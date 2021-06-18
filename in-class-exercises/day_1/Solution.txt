@@ -1,0 +1,16 @@
+$ mkdir exercises 
+
+$ cd exercises
+
+$ touch movies.txt
+
+$ echo 'The Breakfast Club
+> Inception
+> Legally Blonde
+> Big Fish
+> The Incredibles'> movies.txt
+
+$ grep "Big Fish" movies.txt
+
+$ echo "Big Fish" >> movies.txt
+

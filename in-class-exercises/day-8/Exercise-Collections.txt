@@ -1,0 +1,8 @@
+Write a class named Assignment11 that uses a double for-loop (a for-loop within a for-loop). The outer loop 
+should navigate through an integer list  that has 10 elements corresponding to the numbers 1 through 10, 
+inclusive. The inner loop should count from 1 to 10, and prints the value of the current count multiplied by the integer value in the list. You should end up printing the multiples of 1 through 10 from 1 to 10. Ex: 1*1, 
+1*2, 1*3…1*10, 2*1, 2*2, 2*3…10*9, 10*10.
+
+Create a Set and add three elements to it. 
+
+Create Queue and add three elements to it.

@@ -1,0 +1,13 @@
+# Exercise
+
+1. Create a new folder called exercises.
+
+2. Create a new file movies.txt 
+
+3. Add your five favorite movies to the file. 
+
+4. Search the file for the favorite movie of your group. 
+
+5. Add a movie on to the end of your list.
+
+6. Save all these commands in a file that you will push up to github tomorrow. 
