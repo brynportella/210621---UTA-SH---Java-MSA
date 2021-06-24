@@ -1,18 +1,12 @@
-# Foo Bar 
+# Loops Exercise
 
-You have to print the numbers from 1 to 100.
+1. Create a while loop that stores the numbers one through fifty in an array.
 
-But for every multiple of 5 print "Foo".
+2. Use a do while loop to add five to all the odd numbers in the array. 
 
-For every multiple of 3 print "Bar". 
+3. Use a for loop to print each element of the array. Unless that element is a multiple of four or six. If it's a multiple of four print FOUR!!. If it's a multiple of six print SIX!!!. If it's a multiple of both print FOUR!!SIX!!!. 
 
-For every multiple of both 5 and 3 print "FooBar".
 
-Whenever you print, Foo, Bar or FooBar, you should not print the number. 
-
-## Bonus 
-
-Expand this to be a method that takes in the end number and prints everything up to that point. Adhering to the same aforementioned rules.
 
 
 
