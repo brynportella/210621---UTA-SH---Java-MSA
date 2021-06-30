@@ -8,12 +8,12 @@ public class WhileLoopIntro {
 		 * }
 		 */
 		
-		int x = 0; 
+		int x = 1; 
 		while(x<9) {
 			System.out.println(x);
 			x+=1; //same as x = x+1; 
 		}
-		
+		//x
 	
 	}
 }
