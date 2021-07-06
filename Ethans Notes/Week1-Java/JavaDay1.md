@@ -593,3 +593,45 @@ Autoboxing: when you pass a primitive argument into a parameter of a method that
 
 Unboxing: when you pass an wrapper inot a parameter of a method that asks for a primitive, Java will automatically convert from the wrapper to the primitive
 
+# Git Intro/Review
+
+Git is a version control software
+- Keeps track of every change ever made to a software project
+
+Groups file changes versions that allow us to keep track of the history of the files
+
+Provides a collaborative tool for group
+
+Github and Gitlab which are git hosting for online repositories
+
+Central Version Control vs Distributed Version Control
+- Central: All the project is stored in one central location, that allows for no copies of the master files
+- Distributed: each user has a copy of all versions of the master file, this is locally on their machine, you can push/pull this code into a single repository online
+
+Branching is a timeline of deviations of versions of the master file, these do not alter master/root branch
+
+Git Commands:
+
+- git pull, this is a combo of git fetch and git merge, it will get the lastest changes from the remote repository
+- git fetch, this will download all history from the remote tracking branches
+- git add will add files to be committed
+    - you can use a period (.) to add all the files
+- git commit -m "message", this is used to create a commit
+    - Please write a short but descriptive message
+    - Commit often, but not for literally every line changed
+- git push, will upload your files from your local machine to the remote repository
+- git checkout -b will create a new branch
+- git clone url this will clone an existing repository onto your local machine
+
+The common git work flow
+
+1. Before doing any work on the project do a git pull
+2. You will do some work, then do a git add .
+3. You will do a git commit -m "descriptive message"
+4. You will do a git push
+
+Git Cheat Sheet:
+- https://training.github.com/downloads/github-git-cheat-sheet.pdf
+
+Git Helpful Guide to fixing merge conflicts:
+- https://www.atlassian.com/git/tutorials/using-branches/merge-conflicts
