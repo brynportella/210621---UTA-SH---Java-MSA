@@ -484,3 +484,112 @@ Interfaces are implicitly public and abstract
 - In Java 8, defualt methods were added, which allows programmers to implement methods in an interface
 
 To inherit from an interface a class must use the implements keyword in the class declaration
+
+## Polymorphism
+
+Polymorphism is the ability for an object to take on many forms
+
+The most common way this is achieved is:
+- Method overloading
+- Method orriding
+- Covariance
+- Casting
+
+Method Overloading:
+- Two or more methods exist with the same name, but have different method signatures by changing the parameter list
+
+You can change the number, the types, and/or the order of the paremeters passed to the method
+- The return type must stay the same
+- Which method runs is determined at run-time, making it a run-time polymorphism
+
+Method Overriding:
+
+- A method in a child class has the same name as a method in the parent class, but a different implementation
+
+Overriding methods makes class hierarchies more flexible and dynamic
+
+Method overriding is a form of runtime polymorphism because of virtual method invocation
+- Virtual method invocation will look at the reference objects type, and call the method associated with that object
+
+If a subclass implements the same static method, the method is hidden. Method hiding replaces the parents method in the calls defined in the child class
+
+Covariant Return Type:
+- When overriding a method, you can change the return type as long as it is a subclass of the original return type
+- You can change the access modifier as long as it is not more restrictive
+
+## Casting
+
+Upcasting allows you to assign a child object ot a parent object. This works because the child will havea all the behaviors of the parent, however, you may miss some of the childs functionality
+- You might want to use upcasting to access variables that are not accessible by the child object, an example is given here
+    - https://programming.guide/java/upcast-saves-the-day.html
+
+Downcasting is the opposite. It allows you to assign a parent object to a child object. However, you cannot garentee that the parent object will have all the properties of the child object, leading to issues
+
+## Encapsulation
+
+Restricting direct access to data, while also providing indirect access to it through separate methods
+
+You achieve encapsulation in Java by making data memebers private, and creating public getters and setters
+
+# SOLID Design Principles
+
+Set of principles that are used in conjunction with OOP
+
+Single Responsibility:
+- A class should only have a single responsibility, only one part of the software should be affected by a class
+
+Open-Closed Principle:
+- Software entities should be open for extension, but closed for modification. Classes should be able to have their behavior extened without being modified
+
+Listkov Substitution Principle:
+- The objects in a program should be replaceble with instances of their subtypes without altering the correctness of the program
+
+Interface Segregatino Principle:
+- Many client specific interfaces are better than one general purpose interface
+
+Dependency Inversion Principle:
+- One should depend upon abstraction, not concretion
+- This will be huge in week 6
+
+# Object Class
+
+In Java the object class is the root of all classes from which all other classes inherit
+
+Therefore, all classes in Java will have these methods defined by the Object class:
+
+- Object clone()
+- boolean equals(): by default will perform == on the objects memory location, but you can override this, and compare any parts of your object
+- void finalize(): this is called by the garbage collector when it determines there are no more references to the object
+- Class<?> getClass()
+- int hashCode(): returns an int indicating the hashcode, this one has a few rules
+    - If you override the equals method, you should override the hashcode
+    - The result of hascode should not change in a program
+    - if .equals() returns true, the hashcode should be the same
+    - if .equals() returns false, the hashcode does not have to be different
+- void notify()
+- void notifyAll()
+- String toString(): this will be called automatically if you try to print the object, typically you want to override this, otherwise you will just print the fully qualifed class name
+- void wait()
+- void wait(long timout)
+- void wait(long timeout, int nano)
+
+# Wrapper Classes
+
+For every primitive in Java there is a wrapper class with the same name but capitalized
+- These allow you to treat primitives as objects
+
+| Primitive | Wrapper Class |
+| --------- | ------------- |
+| boolean   | Boolean       |
+| byte      | Byte          |
+| short     | Short         |
+| char      | Character     |
+| int       | Integer       |
+| long      | Long          |
+| float     | Float         |
+| double    | Double        |
+
+Autoboxing: when you pass a primitive argument into a parameter of a method that takes a wrapper object, it will automatically wrap the primitive into its object type
+
+Unboxing: when you pass an wrapper inot a parameter of a method that asks for a primitive, Java will automatically convert from the wrapper to the primitive
+
