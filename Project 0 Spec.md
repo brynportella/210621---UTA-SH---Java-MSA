@@ -8,6 +8,8 @@ The Bank app is a console-based application that simulates banking operations. A
 
 We want to see that you can meet deadlines and that you can code. You are expected to complete the following requirements and give a 5 minute presentation of your project to our QC team.
 
+## Project Presentations on 07/21/2021
+
 ## Requirements
 
 1. Functionality should reflect the below user stories.
