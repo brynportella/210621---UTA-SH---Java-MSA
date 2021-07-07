@@ -2,7 +2,7 @@ package com.example.collections;
 
 import java.util.Random;
 
-public class User {
+public class User implements Comparable<User>{
 	
 	private String firstName;
 	private String lastName;
@@ -48,6 +48,19 @@ public class User {
 	public String toString() {
 		return "User: firstName: " + firstName + " lastName: " + lastName + " username: " + username + 
 				" password: " + password;
+	}
+
+	@Override
+	public int compareTo(User o) {
+		
+		if(this.username.compareTo(o.username) > 0) {
+			return 1;
+		} else if(this.username.compareTo(o.username) < 0) {
+			return - 1;
+		}else {
+			return 0;
+		}
+		
 	}
 	
 }

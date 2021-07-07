@@ -141,7 +141,7 @@ Some important interfaces that indirectly implement Iterable through the Collect
 Lists are the most bacis datatype, which are just collections of data that is ordered, and preserve the order in which the elements are inserted into the list
 
 -   Duplicates are allowed
--   Elements are accessed by their index, which start at 0
+-   Elements are accessed by their#, which start at 0
 
 ArrayList: a concrete implementation of the List interface which contains an array inside of it
 
@@ -240,3 +240,49 @@ Hashtable
 -   Older
 -   Threadsafe
 -   It cannot contain null keys or values
+
+# Generics
+
+Generics are constructs introduced in Java 5, which enforce compile time safety by allowing you use paramertizes types
+
+-   These are heavily used with the Collections API
+
+They are essentially a place holder for future datatypes, and help us enforce type safety
+
+Gernerics can be declared on a class, method, or return types
+
+With generics you can restrict a class to only accept objects of a given type, and the compiler will prevent you from using any other type
+
+To make a class or interface generic, you use angled brackets `<>` when declaring it, and use an arbritary "generic type" which is determined at run time
+
+Naming conventions:
+
+-   E => Element
+-   K => Map Key
+-   V => Map Value
+-   N => Number
+-   T => Generic Data Type
+
+# Comparable and Comparator Interface
+
+Comparable is an interface which defines the natural ordering for a class
+
+-   The class must implement the Comparable interface and implement the compareTo() method
+
+The compareTo() method will return:
+
+-   Zero id the two objects are equals
+-   Less than zero if "this" object is smaller than the one in the parameter
+-   Greate than zero if "this" object is larger than the one in the parameter
+
+Comparator is an interface that allows you to define a total ordering on some collection of objects
+
+-   You can implement the Comparator interface, but you are not required to implement the .compare() method
+
+# collections vs Collection vs Collections
+
+Remember the difference between these three:
+
+-   collections are just a collection of entities
+-   Collection is an interface within the Collections API
+-   Collections is a utility class that has static, conveient methods that operate on data structures in the Collections API

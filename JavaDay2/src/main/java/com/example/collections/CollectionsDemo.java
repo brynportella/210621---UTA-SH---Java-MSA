@@ -2,6 +2,7 @@ package com.example.collections;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -9,6 +10,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class CollectionsDemo {
 	
@@ -108,6 +110,24 @@ public class CollectionsDemo {
 			System.out.println(mapValues.next());
 		}
 		System.out.println();
+		
+		
+		//The Collections class has useful methods that we can use on collections, including sorting
+		// In order for Collections.sort to work, the object being sorted in the colleciton must
+		// Implement comparable
+		Collections.sort(userArrayList);
+		System.out.println(userArrayList);
+		System.out.println();
+		
+		//TreeSets will sort the elements based on a comparator
+		Set<User> userTree = new TreeSet<User>(new UserComparator());
+		userTree.add(new User("Jerry", "Smith", "jsmith"));
+		userTree.add(new User("Rick", "Sanchez", "ricketyrick"));
+		userTree.add(beth);
+		userTree.add(summer);
+		userTree.add(new User("Morty", "Smith", "passdawg"));
+		
+		System.out.println(userTree);
 	}
 	
 }
