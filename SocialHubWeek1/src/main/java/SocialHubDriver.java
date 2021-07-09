@@ -1,12 +1,16 @@
+import java.util.List;
 import java.util.Scanner;
 
 import com.example.exceptions.InvalidCredentialsException;
+import com.example.models.Post;
 import com.example.models.User;
+import com.example.services.PostService;
 import com.example.services.UserService;
 
 public class SocialHubDriver {
 	
 	private static UserService uServ = new UserService("users.txt");
+	private static PostService pServ = new PostService("posts.txt");
 	
 	public static void main(String[] args) {
 		
@@ -50,13 +54,27 @@ public class SocialHubDriver {
 					}
 				}
 			} else {
-				System.out.println("To logout press 1");
-				int logout = Integer.parseInt(in.nextLine());
-				if(logout != 1) {
-					System.out.println("Please press 1");
-				}
-				else {
-					done = true;
+				System.out.println("To view posts press 1, to create a post press 2");
+				int choice = Integer.parseInt(in.nextLine());
+				//If the user chooses 1, we will show them the list of posts
+				if(choice == 1) {
+					List<Post> posts = pServ.getAllPosts();
+					for(Post post: posts) {
+						System.out.println(post.getUser() + ":");
+						System.out.println(post.getContent());
+						System.out.println();
+					}
+					System.out.println("Are you finished? Press 1 for yes, press 2 for no");
+					choice = Integer.parseInt(in.nextLine());
+					done = (choice == 1) ? true : false;
+				} else {
+					System.out.println("Please enter your content below:");
+					String content = in.nextLine();
+					Post p = new Post(u.getUsername(), content);
+					pServ.addPost(p);
+					System.out.println("Post was received, are you finished? Press 1 for yes, press 2 for no");
+					choice = Integer.parseInt(in.nextLine());
+					done = (choice == 1) ? true : false;
 				}
 			}
 		}
