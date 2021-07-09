@@ -1,0 +1,19 @@
+2021-07-09 11:39:37 DEBUG LogginExample:12 - this statement would be useful for debugging the application
+2021-07-09 11:39:37 INFO  LogginExample:13 - informational message, use this level of logging
+2021-07-09 11:39:37 WARN  LogginExample:14 - something bad potentnially could be happening
+2021-07-09 11:39:37 ERROR LogginExample:15 - something went wrong
+2021-07-09 11:39:37 FATAL LogginExample:16 - Something extremly wrong happened
+2021-07-09 11:40:35 DEBUG LogginExample:12 - this statement would be useful for debugging the application
+2021-07-09 11:40:35 INFO  LogginExample:13 - informational message, use this level of logging
+2021-07-09 11:40:35 WARN  LogginExample:14 - something bad potentnially could be happening
+2021-07-09 11:40:35 ERROR LogginExample:15 - something went wrong
+2021-07-09 11:40:35 FATAL LogginExample:16 - Something extremly wrong happened
+2021-07-09 11:41:13 TRACE LogginExample:11 - trace message: very fine grained
+2021-07-09 11:41:13 DEBUG LogginExample:12 - this statement would be useful for debugging the application
+2021-07-09 11:41:13 INFO  LogginExample:13 - informational message, use this level of logging
+2021-07-09 11:41:13 WARN  LogginExample:14 - something bad potentnially could be happening
+2021-07-09 11:41:13 ERROR LogginExample:15 - something went wrong
+2021-07-09 11:41:13 FATAL LogginExample:16 - Something extremly wrong happened
+2021-07-09 11:41:38 WARN  LogginExample:14 - something bad potentnially could be happening
+2021-07-09 11:41:38 ERROR LogginExample:15 - something went wrong
+2021-07-09 11:41:38 FATAL LogginExample:16 - Something extremly wrong happened
