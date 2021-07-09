@@ -79,6 +79,7 @@ public class SocialHubDriver {
 			}
 		}
 		
+		System.out.println("Goodbye :)");
 		in.close();
 	}
 	

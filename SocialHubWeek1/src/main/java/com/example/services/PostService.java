@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.dao.FileIO;
+import com.example.logging.Logging;
 import com.example.models.Post;
 
 public class PostService {
@@ -48,6 +49,7 @@ public class PostService {
 		
 		pList.add(p);
 		io.writeObject(pList);
+		Logging.logger.info("User: " + p.getUser() + " posted a new post");
 	}
 	
 }

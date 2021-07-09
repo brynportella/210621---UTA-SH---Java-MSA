@@ -1,7 +1,10 @@
 package com.example.models;
 
-public class Post {
+import java.io.Serializable;
+
+public class Post implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
 	private String user;
 	private String content;
 	
