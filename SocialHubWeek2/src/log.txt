@@ -1,0 +1,6 @@
+2021-07-09 13:45:33 WARN  Logging:81 - User tried logging in that does not exist
+2021-07-09 13:46:34 WARN  Logging:81 - User tried logging in that does not exist
+2021-07-09 13:47:04 WARN  Logging:76 - User tried logging in with invalid credentials
+2021-07-09 13:47:54 INFO  Logging:72 - User: EthanMcGill8552was logged in
+2021-07-09 13:48:11 INFO  Logging:52 - User: EthanMcGill8552 posted a new post
+2021-07-09 14:04:01 WARN  Logging:81 - User tried logging in that does not exist

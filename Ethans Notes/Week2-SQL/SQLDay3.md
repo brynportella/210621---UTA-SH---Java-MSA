@@ -138,3 +138,79 @@ Some popular scalar functions are:
 -   ABS(numer): returns the absolute value of the row
 -   CEILING(number): returns the rounded up value of the number
 -   FLOOR(number): returns the rounded down value of the number
+
+# Normalization
+
+Normalization refers to reducing the redundancy of data and improving data integrity and consistency
+
+There are many different forms, but we will only focus on the first three
+
+First Normal Form (1NF):
+
+-   Must have a primary key
+-   No duplicates
+-   Atomic Columns (break up the columns as small as we can)
+
+Second Normal Form (2NF):
+
+-   It must first be first normal form
+-   All attributes must depend on the key, aka, there are no partial dependences
+
+Third Normal Form (3NF):
+
+-   Must be second normal form
+-   Here are no transitive dependencies (data should only relate to the primary key, nothing else)
+
+A way to remember the three normal forms in order is the saying:
+
+The key (1nf), the whole key (2nf), and nothing but the key (3nf), so help me codd
+
+# JDBC
+
+Java Database Connectivity, allows us to write java code that interacts with relational databases
+
+# Interfaces of JDBC
+
+There are several classes and interfaces commonly used with JDBC, which can be found in the java.sql, and javax.sql packages
+
+-   `DriverManger` class : to make a connection with a database driver
+-   `DataSource` interface : for retrieving connections, an alternative to DriverManager
+-   `Connection` interface : represents a physical connection with a database
+-   `SQLExceptin` class : a general exception thrown when somthing goes wrong when accessing a database
+-   `Statement` interface : used for executing static SQL statements
+-   `PreparedStatement` interface : used to execute precompiled SQL statements
+-   `CallableStatement` interface : used to execute stored procedures
+-   `ResultSet` interface : represents data returned from the database
+
+# Setting up the database Driver and connection
+
+To establish a connection, we will need what is know as a driver
+
+-   These are database engine specific
+-   You can get these through Maven Dependencies in your pom.xml
+
+```xml
+<!-- https://mvnrepository.com/artifact/postgresql/postgresql -->
+<dependency>
+	<groupId>postgresql</groupId>
+	<artifactId>postgresql</artifactId>
+	<version>9.1-901.jdbc4</version>
+</dependency>
+```
+
+# Connection Interface
+
+To create a connection you use the DriverManger.getConnection() method, with these parameters
+
+-   URL to the database (jdbc:postgresql://hostname:port/databasename)
+-   username
+-   password
+
+# Design Pattern: Data Access Object
+
+This is a design pattern we will be following to separate our business logic from our database logic
+
+-   You will create a interface with method stubs of your database calls
+-   Implement that interface with concrete DAO classes
+
+This pattern results in reusable code, and cleaner project structure
