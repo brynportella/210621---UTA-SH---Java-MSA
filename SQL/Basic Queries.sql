@@ -81,8 +81,46 @@ select * from users where id between 1 and 4;
 -- IN keyword
 select * from users where first_name in('Larry', 'Mary', 'Harry');
 
+-- Create a Many-to-one relationship
+
+create table if not exists posts(
+	post_id int primary key generated always as identity,
+	-- references users(id) is how we make our link to the users table
+	author_id int references users(id) not null,
+	wall_user_id int references users(id) not null,
+	post_content varchar(500) not null
+);
+
+-- After we create some posts, you cannot drop a user while a post points at its id
+-- Because posts depends on users, you can fix this issue by using CASCADE
+
+drop table users cascade;
+
+-- Create a many-to-many relationship with a junction table
+
+create table if not exists post_likes_junction(
+	user_id int references users(id) not null,
+	post_id int references posts(post_id) not null,
+	primary key(user_id, post_id)
+);
+
+-- Use your DML skills to do the following:
+    -- Harry should post a message on Haydens walls, which Terry likes
+    -- Mary should post a message on her own wall, which Harry and Terry like
+    -- Hayden will post a message on Terrys wall, which Mary and Hayden like
+    
+-- Harry is userid 2, Hayden is userid 1
+insert into posts(author_id, wall_user_id , post_content) values 
+	(2, 1, 'Whats up');
+
+select * from posts;
+
+insert into post_likes_junction (user_id, post_id) values (6, 1);
+
+select  * from post_likes_junction;
 
 
+	
 
 
 
