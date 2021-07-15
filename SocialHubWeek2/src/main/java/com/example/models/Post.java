@@ -2,40 +2,66 @@ package com.example.models;
 
 import java.io.Serializable;
 
-public class Post implements Serializable{
+public class Post{
 	
-	private static final long serialVersionUID = 1L;
-	private String user;
-	private String content;
+	private int postId;
+	private int authorId;
+	private int wallUserId;
+	private String postContent;
 	
 	public Post() {
 		
 	}
 	
-	public Post(String user, String content) {
-		this.user = user;
-		this.content = content;
+	public Post(int id, int authorId, int wallId, String content) {
+		this.postId = id;
+		this.authorId = authorId;
+		this.wallUserId = wallId;
+		this.postContent = content;
+	}
+	
+	public Post(int authorId, int wallId, String content) {
+		this.authorId = authorId;
+		this.wallUserId = wallId;
+		this.postContent = content;
 	}
 
-	public String getUser() {
-		return user;
+	public int getPostId() {
+		return postId;
 	}
 
-	public void setUser(String user) {
-		this.user = user;
+	public void setPostId(int postId) {
+		this.postId = postId;
 	}
 
-	public String getContent() {
-		return content;
+	public int getAuthorId() {
+		return authorId;
 	}
 
-	public void setContent(String content) {
-		this.content = content;
+	public void setAuthorId(int authorId) {
+		this.authorId = authorId;
+	}
+
+	public int getWallUserId() {
+		return wallUserId;
+	}
+
+	public void setWallUserId(int wallUserId) {
+		this.wallUserId = wallUserId;
+	}
+
+	public String getPostContent() {
+		return postContent;
+	}
+
+	public void setPostContent(String postContent) {
+		this.postContent = postContent;
 	}
 
 	@Override
 	public String toString() {
-		return "Post [user=" + user + ", content=" + content + "]";
+		return "Post [postId=" + postId + ", authorId=" + authorId + ", wallUserId=" + wallUserId + ", postContent="
+				+ postContent + "]";
 	}
 	
 }

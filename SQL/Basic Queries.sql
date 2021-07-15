@@ -209,6 +209,67 @@ $$ language 'plpgsql';
 
 select like_check(3);
 
+-- Sequences are just a sequence of number that goes from 1 to the next
+create sequence counter start 1;
+select nextval('counter');
+
+create table following(
+	f_id int primary key,
+	follower_id int,
+	followie_id int
+);
+
+-- We can use sequences in conjunction with triggers to create auto generated field values
+create or replace function ex_trigger()
+returns trigger as $$
+begin
+	-- new.f_id will get the f_id column from the following table
+	-- and set it to the next val of counter
+	new.f_id = nextval('counter');
+	return new;
+end;
+$$ language 'plpgsql';
+
+create trigger id_trigger before insert on following for each row execute procedure ex_trigger();
+
+insert into following(follower_id, followie_id) values (2,1);
+
+select * from following;
+
+-- View, is a virtual representation of a table or subset of a table
+create view myview as select post_id, post_content from posts;
+
+select * from myview;
+
+-- Cursors are pointers to a temporary workspace, they hold rows returned by a sql statement
+-- The set of rows it holds is known as the result set or the active set
+
+-- We use cursors to return mulitple rows of data from a function
+create or replace function get_user_posts(u_id int)
+returns refcursor as $$
+declare ref refcursor;
+begin
+	open ref for select * from posts where author_id = u_id;
+	return ref;
+end;
+$$ language 'plpgsql';
+
+select get_user_posts(6);
+commit;
+
+create or replace function get_all_posts()
+returns refcursor as $$
+declare ref refcursor;
+begin
+	open ref for select u.username, p.post_id, p.author_id, p.wall_user_id, p.post_content from users u, posts p where u.id = p.author_id;
+	return ref;
+end;
+$$ language 'plpgsql';
+
+select get_all_posts();
+commit;
+
+
 
 
 
