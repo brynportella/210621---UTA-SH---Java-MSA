@@ -1,6 +1,7 @@
 package com.example.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -31,7 +32,7 @@ public class UserDaoDB implements UserDao{
 			ResultSet rs = s.executeQuery(sql);
 			
 			while(rs.next()) {
-				userList.add(new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
+				userList.add(new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(5), rs.getString(4), rs.getString(6)));
 			}
 			
 			return userList;
@@ -73,22 +74,72 @@ public class UserDaoDB implements UserDao{
 		
 		return null;
 	}
-
+	
+	//Prepared Statements
+	
 	@Override
 	public void createUser(User u) {
-		// TODO Auto-generated method stub
+		
+		try {
+			Connection con = conUtil.getConnection();
+			String sql = "INSERT INTO users(first_name, last_name, email, username, password) values"
+					+ "(?,?,?,?,?)";
+			PreparedStatement ps = con.prepareStatement(sql);
+			
+			ps.setString(1, u.getFirstName());
+			ps.setString(2, u.getLastName());
+			ps.setString(3, u.getEmail());
+			ps.setString(4, u.getUsername());
+			ps.setString(5, u.getPassword());
+			
+			ps.execute();
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
 		
 	}
 
 	@Override
 	public void updateUser(User u) {
-		// TODO Auto-generated method stub
+		try {
+			Connection con = conUtil.getConnection();
+			String sql = "UPDATE users SET first_name = ?, last_name = ?, email = ?, username = ?, password = ? "
+					+ " WHERE users.id = ?";
+			
+			PreparedStatement ps = con.prepareStatement(sql);
+			
+			ps.setString(1, u.getFirstName());
+			ps.setString(2, u.getLastName());
+			ps.setString(3, u.getEmail());
+			ps.setString(4, u.getUsername());
+			ps.setString(5, u.getPassword());
+			ps.setInt(6, u.getId());
+			
+			ps.execute();
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
 		
 	}
 
 	@Override
 	public void deleteUser(User u) {
-		// TODO Auto-generated method stub
+		
+		try {
+			
+			Connection con = conUtil.getConnection();
+			String sql = "DELETE FROM users WHERE users.id = ?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			
+			ps.setInt(1, u.getId());
+			
+			ps.execute();
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
 		
 	}
 

@@ -113,14 +113,102 @@ create table if not exists post_likes_junction(
 insert into posts(author_id, wall_user_id , post_content) values 
 	(2, 1, 'Whats up');
 
-select * from posts;
-
 insert into post_likes_junction (user_id, post_id) values (6, 1);
 
+insert into posts(author_id, wall_user_id, post_content) values
+	(4,4, 'Hello myself');
+
+insert into post_likes_junction(user_id, post_id) values (2,2),(6,2);
+
+insert into posts(author_id, wall_user_id, post_content) values
+	(1,6, 'Hello Terry');
+
+insert into post_likes_junction(user_id, post_id) values (4,3),(1,3);
+
+-- Lets insert some more data to play with
+INSERT INTO posts(author_id, wall_user_id, post_content) VALUES 
+    (1, 1, 'I just joined!'),
+    (1, 3, 'How are you today!'),
+    (1, 6, 'How is the family?'),
+    (2, 3, 'Happy birthday!'),
+    (2, 6, 'That was a crazy night'),
+    (3, 1, 'I am doing great!'),
+    (3, 6, 'We should do that again sometime!'),
+    (4, 1, 'Glad to see you joined'),
+    (6, 6, 'Thanks everyone how came out'),
+    (6, 2, 'We really had a great time'),
+    (6, 3, 'We will definitely plan to do some more events');
+
+   
+insert into post_likes_junction (user_id, post_id) values
+	(2,1), (3,1),
+	(3,2), (4,2),
+	(6, 3), (2, 3), (3, 3),
+	(3, 4), (2, 4), (1, 4),
+	(6, 5), (3, 5), (2, 5),
+	(1, 6),
+	(6, 7), (2, 7), (3, 7), (4,7),
+	(1, 8), (3, 8),
+	(3, 9), (2, 9), (4, 9),
+	(2, 10), (3, 10),
+	(3, 11);
+   
 select  * from post_likes_junction;
+select * from posts;
 
+-- Aggregate functions
 
-	
+select count (l.post_id) as likes, p.post_content
+	from post_likes_junction l, posts p
+	where l.post_id = p.post_id 
+	group by p.post_content
+	order by likes desc;
+
+select max(username) from users;
+
+select min(username) from users;
+
+-- Scalar functions
+
+select LOWER(first_name) as first, LOWER(last_name) as last from users;
+
+select CONCAT(first_name, last_name) as name from users;
+
+-- TCL Statements
+
+begin;
+	insert into posts (author_id, wall_user_id, post_content) values (4,6, 'Great event last night');
+	insert into posts (author_id, wall_user_id, post_content) values (1,6, 'Can I get an invite next time?');
+	savepoint mysavepoint;
+	rollback to savepoint mysavepoint;
+	insert into posts (author_id, wall_user_id, post_content) values (6, 1, 'Of course you can');
+commit;
+
+-- Stored Procedures don't return anything, they are useful for adding elements to a table
+create or replace procedure create_post(a_id int, w_id int, post varchar(500))
+as $$
+begin
+	insert into posts(author_id, wall_user_id, post_content) values (a_id, w_id, post);
+end;
+$$ language 'plpgsql';
+
+-- To run a stored procedure, you use the keyword call
+call create_post(1,6, 'Why did not get invited last weekend?');
+
+select * from posts;
+
+-- Creating a function, functions return a value
+create or replace function like_check(p_id int)
+returns int as $$
+declare likes int;
+begin
+	select into likes count(*) from post_likes_junction plj where p_id = plj.post_id;
+	return likes;
+end;
+$$ language 'plpgsql';
+
+select like_check(3);
+
 
 
 
