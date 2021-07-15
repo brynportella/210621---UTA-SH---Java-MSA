@@ -5,51 +5,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.dao.FileIO;
+import com.example.dao.PostDao;
 import com.example.logging.Logging;
 import com.example.models.Post;
+import com.example.models.PostDisplay;
+import com.example.models.User;
 
 public class PostService {
 	
-	private String file;
-	private FileIO<Post> io;
+	private PostDao pDao;
 	
-	public PostService(String file) {
-		this.file = file;
-		this.io = new FileIO<Post>(file);
+	public PostService(PostDao p) {
+		this.pDao = p;
 	}
 	
-	//Get all posts from the post file
-	public List<Post> getAllPosts(){
-		List<Post> pList;
-		
-		try {
-			pList = io.readObject();
-		} catch (FileNotFoundException e) {
-			pList = new ArrayList<Post>();
-		} catch (Exception e) {
-			pList = null;
-			e.printStackTrace();
-		}
-		
-		return pList;
+	public void addPost(int userId, int wallId, String content) {
+		Post p = new Post(userId, wallId, content);
+		pDao.createPost(p);
 	}
 	
-	public void addPost(Post p) {
-		ArrayList<Post> pList;
-		
-		try {
-			pList = io.readObject();
-		} catch(FileNotFoundException e) {
-			pList = new ArrayList<Post>();
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			return;
-		}
-		
-		pList.add(p);
-		io.writeObject(pList);
-		Logging.logger.info("User: " + p.getUser() + " posted a new post");
+	public List<PostDisplay> getAllPosts(){
+		return pDao.getAllPosts();
+	}
+	
+	public User loadUserPosts(User u) {
+		return pDao.getUsersPosts(u);
 	}
 	
 }

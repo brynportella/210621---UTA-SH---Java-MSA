@@ -156,6 +156,8 @@ insert into post_likes_junction (user_id, post_id) values
 select  * from post_likes_junction;
 select * from posts;
 
+truncate table posts cascade;
+
 -- Aggregate functions
 
 select count (l.post_id) as likes, p.post_content

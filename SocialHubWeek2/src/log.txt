@@ -57,3 +57,13 @@
 2021-07-15 15:17:51 INFO  Logging:37 - New user has registered
 2021-07-15 15:17:51 INFO  Logging:37 - New user has registered
 2021-07-15 15:17:51 INFO  Logging:37 - New user has registered
+2021-07-15 15:44:26 WARN  Logging:33 - Username created that already exists in the database
+2021-07-15 15:44:55 WARN  Logging:33 - Username created that already exists in the database
+2021-07-15 15:45:31 WARN  Logging:45 - User tried loggging in that does not exist
+2021-07-15 15:46:31 WARN  Logging:49 - User tried to login with invalid credentials
+2021-07-15 15:46:54 INFO  Logging:53 - User was logged in
+2021-07-15 15:53:18 INFO  Logging:53 - User was logged in
+2021-07-15 15:56:49 INFO  Logging:53 - User was logged in
+2021-07-15 15:58:30 INFO  Logging:53 - User was logged in
+2021-07-15 15:58:59 INFO  Logging:53 - User was logged in
+2021-07-15 16:00:35 INFO  Logging:53 - User was logged in

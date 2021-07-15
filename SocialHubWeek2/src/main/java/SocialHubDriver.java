@@ -7,6 +7,7 @@ import com.example.dao.UserDao;
 import com.example.dao.UserDaoDB;
 import com.example.exceptions.InvalidCredentialsException;
 import com.example.models.Post;
+import com.example.models.PostDisplay;
 import com.example.models.User;
 import com.example.services.PostService;
 import com.example.services.UserService;
@@ -19,9 +20,30 @@ public class SocialHubDriver {
 	public static void main(String[] args) {
 		
 		UserDao uDao = new UserDaoDB();
+		PostDao pDao = new PostDaoDB();
 		UserService uServ = new UserService(uDao);
+		PostService pServ = new PostService(pDao);
 		
-		uServ.signUp("Rick", "Sanchez", "rick@rickmail.com", "IloveMorty");
+		
+		//Once we create rick once, we comment this out so there are no duplicates
+		//User rick = uServ.signUp("Rick", "Sanchez", "rick@rickmail.com", "IloveMorty");
+		
+		
+		User rick = uServ.signIn("RickSanchez1472", "IloveMorty");
+		
+		//pServ.addPost(rick.getId(), rick.getId(), "Morty and I just went on a sick adventure");
+		
+		List<PostDisplay> pList = pServ.getAllPosts();
+		
+		for(int i=0; i<pList.size(); i++) {
+			System.out.println(pList.get(i).getUsername());
+			System.out.println(pList.get(i).getContent());
+			System.out.println();
+		}
+		
+		rick = pServ.loadUserPosts(rick);
+		
+		System.out.println(rick);
 		
 		/*
 		Scanner in = new Scanner(System.in);
