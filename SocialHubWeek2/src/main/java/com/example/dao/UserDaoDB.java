@@ -78,9 +78,8 @@ public class UserDaoDB implements UserDao{
 	//Prepared Statements
 	
 	@Override
-	public void createUser(User u) {
+	public void createUser(User u) throws SQLException{
 		
-		try {
 			Connection con = conUtil.getConnection();
 			String sql = "INSERT INTO users(first_name, last_name, email, username, password) values"
 					+ "(?,?,?,?,?)";
@@ -93,10 +92,6 @@ public class UserDaoDB implements UserDao{
 			ps.setString(5, u.getPassword());
 			
 			ps.execute();
-			
-		} catch(SQLException e) {
-			e.printStackTrace();
-		}
 		
 	}
 

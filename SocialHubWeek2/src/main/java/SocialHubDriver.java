@@ -19,55 +19,9 @@ public class SocialHubDriver {
 	public static void main(String[] args) {
 		
 		UserDao uDao = new UserDaoDB();
+		UserService uServ = new UserService(uDao);
 		
-		System.out.println(uDao.getAllUsers());
-		
-		System.out.println(uDao.getUserByUsername("larryking8345"));
-		
-		
-		User u = uDao.getUserByUsername("RickSanchez4882");
-		
-		uDao.deleteUser(u);
-		
-		System.out.println(uDao.getAllUsers());
-		
-		PostDao pDao = new PostDaoDB();
-		
-		Post p = new Post(1, 1, "Hello to myself");
-		
-		pDao.createPost(p);
-		
-		System.out.println(pDao.getAllPosts());
-		
-		u = uDao.getUserByUsername("haydenfields3841");
-		
-		u = pDao.getUsersPosts(u);
-		
-		System.out.println(u);
-		
-		List<Post> postList = u.getPosts();
-		
-		for(int i=0; i<postList.size(); i++) {
-			System.out.println(postList.get(i).getPostContent());
-		}
-		
-		/*
-		u.setEmail("newemail@mail.com");
-		u.setUsername("NewUserName");
-		
-		uDao.updateUser(u);
-		
-		System.out.println(uDao.getUserByUsername("NewUserName"));
-		/*
-		
-		/* Commenting this new user out to not spam our databases with ricks
-		User u = new User("Rick", "Sanchez", "rick@rickmail.com", "ilovemorty");
-		
-		uDao.createUser(u);
-		System.out.println(uDao.getAllUsers());
-		*/
-		
-		
+		uServ.signUp("Rick", "Sanchez", "rick@rickmail.com", "IloveMorty");
 		
 		/*
 		Scanner in = new Scanner(System.in);
