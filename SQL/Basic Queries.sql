@@ -96,6 +96,8 @@ create table if not exists posts(
 
 drop table users cascade;
 
+truncate table users cascade;
+
 -- Create a many-to-many relationship with a junction table
 
 create table if not exists post_likes_junction(
@@ -121,7 +123,7 @@ insert into posts(author_id, wall_user_id, post_content) values
 insert into post_likes_junction(user_id, post_id) values (2,2),(6,2);
 
 insert into posts(author_id, wall_user_id, post_content) values
-	(1,6, 'Hello Terry');
+	(1,5, 'Hello Terry');
 
 insert into post_likes_junction(user_id, post_id) values (4,3),(1,3);
 
@@ -129,25 +131,25 @@ insert into post_likes_junction(user_id, post_id) values (4,3),(1,3);
 INSERT INTO posts(author_id, wall_user_id, post_content) VALUES 
     (1, 1, 'I just joined!'),
     (1, 3, 'How are you today!'),
-    (1, 6, 'How is the family?'),
+    (1, 5, 'How is the family?'),
     (2, 3, 'Happy birthday!'),
-    (2, 6, 'That was a crazy night'),
+    (2, 5, 'That was a crazy night'),
     (3, 1, 'I am doing great!'),
-    (3, 6, 'We should do that again sometime!'),
+    (3, 5, 'We should do that again sometime!'),
     (4, 1, 'Glad to see you joined'),
-    (6, 6, 'Thanks everyone how came out'),
-    (6, 2, 'We really had a great time'),
-    (6, 3, 'We will definitely plan to do some more events');
+    (5, 5, 'Thanks everyone how came out'),
+    (5, 2, 'We really had a great time'),
+    (5, 3, 'We will definitely plan to do some more events');
 
    
 insert into post_likes_junction (user_id, post_id) values
 	(2,1), (3,1),
 	(3,2), (4,2),
-	(6, 3), (2, 3), (3, 3),
+	(5, 3), (2, 3), (3, 3),
 	(3, 4), (2, 4), (1, 4),
-	(6, 5), (3, 5), (2, 5),
+	(5, 5), (3, 5), (2, 5),
 	(1, 6),
-	(6, 7), (2, 7), (3, 7), (4,7),
+	(5, 7), (2, 7), (3, 7), (4,7),
 	(1, 8), (3, 8),
 	(3, 9), (2, 9), (4, 9),
 	(2, 10), (3, 10),
@@ -157,6 +159,8 @@ select  * from post_likes_junction;
 select * from posts;
 
 truncate table posts cascade;
+
+drop table posts cascade;
 
 -- Aggregate functions
 
@@ -270,6 +274,51 @@ $$ language 'plpgsql';
 
 select get_all_posts();
 commit;
+
+-- Simple join examples
+
+insert into users (first_name, last_name, email, username, password) values
+	('Rick', 'Sanchez', 'rick@rickmail.com', 'ricksanchex1234', 'password');
+
+select * from users u inner join posts p on u.id = p.author_id;
+
+select * from users u full join posts p on u.id = p.author_id;
+
+select * from users u left join posts p on u.id = p.author_id;
+
+select * from users u right join posts p on u.id = p.author_id;
+
+-- Get what posts each user has liked
+select u.username, p2.post_content as liked_content from users u
+	inner join (select * from posts p inner join post_likes_junction plj on p.post_id = plj.post_id) as p2 
+	on u.id = p2.user_id;
+
+-- Count users with the greatest number of posts
+select u.id, u.first_name, u.last_name, count(*) as post_num from users u
+	left join posts p on p.author_id = u.id
+	group by u.id
+	order by post_num desc;
+
+-- Rank the users with the most total likes
+select count(u.id) as like_count, u.username
+	from users u
+	inner join (select * from posts p inner join post_likes_junction plj on p.post_id = plj.post_id) as u2 on u2.author_id = u.id
+	group by u.username
+	order by like_count desc;
+
+-- Set Operators
+
+select u.username from users u union select p.post_content from posts p, users u where u.id = p.author_id;
+
+-- Get all posts with a like on it
+select post_content from posts intersect select p.post_content from post_likes_junction plj, posts p where p.post_id = plj.post_id;
+
+-- Get all posts with no likes on them
+select post_content from posts except select p.post_content from post_likes_junction plj, posts p where p.post_id = plj.post_id;
+
+-- Creating an index
+-- There are other parameters you can include while creating an index, however they are not important for this training
+create index uname on users (username);
 
 
 
