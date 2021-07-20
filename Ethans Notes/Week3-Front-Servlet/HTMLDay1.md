@@ -281,7 +281,7 @@ There are three ways in which you can use CSS
 
 -   Inline CSS, this is CSS applied directly to the element in the HTML page
 -   Intern/Embedded CSS, this is CSS written inside of `<style>` tag in the head of your document
--   Externa, this is a completely independent .css file that you import into your html document,
+-   External, this is a completely independent .css file that you import into your html document,
     -   use the `<link rel="stylesheet" href="style.css">` to link you css files
 
 # CSS Box Model
@@ -460,4 +460,4 @@ There are a few things to consider when designing your webpages
 -   Alignment: try to keep a consistent alignment throughout the webpage
 -   Whitespace: use white space to your advantage, you don't want all of your elements crammed
 -   Scale: use scale to emphasize important titles, or text, but try not to make everything huge, or too small
--   Typography: trey to stick with a professional, appropriate font, google is a good source of fonts
+-   Typography: try to stick with a professional, appropriate font, google is a good source of fonts
