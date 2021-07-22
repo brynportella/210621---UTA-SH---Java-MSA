@@ -50,19 +50,19 @@ If you are having trouble wrapping your head around how to start, here is my pre
 
 1. Start with creating your models based off of the ERD diagram that was provided to you. These will be mapped to your database tables using hibernate
 
--   The “User Role”, “Reimbursement Type”, and “Reimbursement Status” tables are all LOOK UP TABLES (enum values). ATTENTION: the Database Administrator (you) will need to pre populate these look up tables with data before doing anything else; because they will have not null foreign keys pointing them.
--   These look up tables will likely not have DAOs in the Java code
--   Your objects should probably be "User", "Reimbursement", "ReimbursementStatus", "ReimbursementType", and "UserRole"
+    - The “User Role”, “Reimbursement Type”, and “Reimbursement Status” tables are all LOOK UP TABLES (enum values). ATTENTION: the Database Administrator (you) will need to pre populate these look up tables with data before doing anything else; because they will have not null foreign keys pointing them.
+    - These look up tables will likely not have DAOs in the Java code
+    - Your objects should probably be "User", "Reimbursement", "ReimbursementStatus", "ReimbursementType", and "UserRole"
 
 2. Once your models are setup, create your DAO layer. Don't make a service layer, or any controllers or servlets, JUST your DAO's. Make sure your DAO layers basic CRUD functionality works, add anything more advanced as you need it
 
--   Just write a quick main method that calls each of the DAO methods separately then go to dBeaver to verify your data was persisted
--   You will likely need more DAO methods later, as your develop you’ll realize that more specific queries are necessary in certain instances. BUT step 2 is about creating the basics for now.
+    - Just write a quick main method that calls each of the DAO methods separately then go to dBeaver to verify your data was persisted
+    - You will likely need more DAO methods later, as your develop you’ll realize that more specific queries are necessary in certain instances. BUT step 2 is about creating the basics for now.
 
 3. Once the models, and DAO's are created it would be a good place to start creating your service layer, using TDD is the easiest way to ensure that you hit that code coverage
 
--   Create simple service methods for now, until you get further into development and realize what specific methods you’ll need. Create simple methods like “verifyLoginCredentials(String uname, String pass)”, “retrieveReimbursements(User user)”, “registerUser(User user)”, etc.
--   I recommend using Mockito to test your service layer, to prevent having testing data in your production database
+    - Create simple service methods for now, until you get further into development and realize what specific methods you’ll need. Create simple methods like “verifyLoginCredentials(String uname, String pass)”, “retrieveReimbursements(User user)”, “registerUser(User user)”, etc.
+    - I recommend using Mockito to test your service layer, to prevent having testing data in your production database
 
 4. Create the servlets after you are confident in your services. Use the front controller design pattern, and this step can be intermingled with step 3 as you realize what services you actually need.
 
