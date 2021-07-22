@@ -16,6 +16,30 @@ The Expense Reimbursement System (ERS) will manage the process of reimbursing em
 -   (OPTIONAL) Users can upload a document or image of their receipt when submitting reimbursements(optional)
 -   (OPTIONAL) The application will send an email to employees letting them know that they have been registered as a new user, giving them their temporary password
 
+## User Stories
+
+As an employee I can:
+
+-   Login
+-   Logout
+-   View the employee home page
+-   Submit a reimbursement request
+-   View pending reimbursement requests
+-   View resolved reimbursement requests
+-   View my account information
+-   Update account information
+
+As a manager I can:
+
+-   Login
+-   Logout
+-   View the manager home page
+-   Approve/Deny pending reimbursement requests
+-   View all pending requests of all employees
+-   View all resolved requests of all employees
+-   View reimbursement requests of a specific employee
+-   View all employees
+
 ## Reimbursement Types
 
 Employees must select the type of reimbursement as: LODGING, TRAVEL, FOOD, or OTHER.
