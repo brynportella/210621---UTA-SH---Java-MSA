@@ -42,6 +42,7 @@ let apiURL = 'https://jsonplaceholder.typicode.com/posts';
 
 //When our document loads, it will call this function immediately, and make a request to grab our posts
 //There are 4 steps in creating an AJAX request
+/*
 (() => {
     //Step one: create the XMLHttpRequest Object
     let xhttp = new XMLHttpRequest();
@@ -64,6 +65,120 @@ let apiURL = 'https://jsonplaceholder.typicode.com/posts';
     //Step four: Send the request
     xhttp.send();
 })();
+*/
+
+//Refactor our above request with fetch and promises
+//Normal fetch request that gets called immediately when the page loads
+/*
+(() => {
+    //To make a fetch request you simply use the fetch()
+    fetch(apiURL)
+        .then((res) => res.json())
+        .then((data) => populatePage(data));
+})();
+
+//You can look at the response headers
+function responseHeaders() {
+    //If you want to see what is in the response header use res.headers
+    fetch(apiURL).then((res) => console.log(res.headers));
+}
+
+responseHeaders();
+
+function requestHeaders() {
+    fetch(apiURL, {
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+        .then((res) => res.json())
+        .then((json) => console.log(json));
+}
+
+requestHeaders();
+
+//To send data we would use a POST request
+function post() {
+    let title = 'this is our title value';
+    let body = 'this is our body value';
+    let postObj = {
+        title,
+        body,
+        id: 1,
+    };
+
+    //To make a post request it is similar to a get, but you must set the method to post in the object of the fetch
+    fetch(apiURL, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(postObj),
+    })
+        .then((res) => res.json())
+        .then((data) => console.log(data));
+}
+
+//Realistically you would have this setup with an event listener
+post();
+
+function failedRequest() {
+    fetch(apiURL, {
+        method: 'GET',
+        body: {},
+    })
+        .then((res) => res.json())
+        .then((data) => console.log(data))
+        .catch((err) => console.log('There was an error'));
+}
+
+failedRequest();
+*/
+
+//We will refactor one last time using async/await
+(async () => {
+    let req = await fetch(apiURL);
+    let res = await req.json();
+    populatePage(res);
+})();
+
+async function post() {
+    let title = 'this is our title';
+    let body = 'this is our body';
+    let postObj = {
+        title,
+        body,
+        id: 1,
+    };
+
+    let req = await fetch(apiURL, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(postObj),
+    });
+
+    let res = await req.json();
+    console.log(res);
+}
+
+post();
+
+async function failedRequest() {
+    try {
+        let req = await fetch(apiURL, {
+            method: 'GET',
+            body: {},
+        });
+        let res = await req.json();
+        console.log(res);
+    } catch (e) {
+        console.log(e);
+    }
+}
+
+failedRequest();
 
 //Basic promise syntax
 let promise = new Promise(function (resolve, reject) {

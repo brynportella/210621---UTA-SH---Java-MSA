@@ -264,3 +264,153 @@ There are various methods you can use to access the response body:
 -   `response.formData()` return the reponse as form data
 -   `response.blob()` returns the response as binary data with type
 -   `reponse.arrayBuffer()` returns the response as an ArrayBuffer
+
+# async/await keywrods
+
+Javascript introduced a nicer way to implement asynchronous functionality in es2017/es8 using the async and await keywords
+
+The `async` keyword denotes that a function will operate asynchronously via the event loop
+
+-   Any function with the async keyword will implicitly return a promise object
+-   You can use any of the consumer functions on the return of an async function, however, there is a nicer way to handle these promises
+
+The `await` keywors only work inside of async function
+
+-   await tells javascript to wait for a promise to be resolved before moving on
+-   You can use await when calling any function that returns a promise, but it must be inside of an async function
+-   It allows you to gather data, or wait for something while also not blocking the main thread
+
+You no longer need to chain consumer functions, making your code easier to read
+
+# Client Server Architecture
+
+A client-server arch is a networking model in which the server provides services to clients to perform user based tasks
+
+Server: is a server software designed to process request and deliver responses to another computer over the internet
+
+Client: is a program that runs locally, and makes requests to a server
+
+![client server](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Client-server-model.svg/1200px-Client-server-model.svg.png)
+
+A client and server established a connection over the internet using a set rules called protocols
+
+There are different protocols for different purposes, we will be using HTTP
+
+-   Clients send HTTP requests to the server, in the form of XML or JSON
+-   Server sends HTTP responses to the client
+
+Types of Client-Server Arch
+
+-   2-tier: Simple client to server interface
+-   3-tier: Client establishes a connection to a middleware, then the middleware connects to the server
+-   n-tier: multiple layers between the client and server
+
+# Servlets
+
+A servlet is a Java class that takes incoming requests, processes them, and generates a response to send back to the user
+
+How servlets work:
+
+![servlet](Servlet.jpg)
+
+# Web/Application Server and the Servlet Container
+
+A webserver is used to handle HTTP requests, where as an Application server is used to handle any type of requests
+
+Application servers pass incoming requests to the application running it, most application servers double as webservers
+
+We will be using Tomcat as our application server
+
+The servlet container is component of some application servers that interacts with the Java servlets
+
+-   They are responsibly for managing the life cycle of servlets
+-   Mapping a URL to a specific servlet
+-   Ensuring the URL requester has the correct access
+
+The built in servlet container in Tomcat is called Catalin
+
+# Life cycle of a servlet
+
+There are three main methods of the servlet life cycle
+
+-   init()
+-   service()
+-   destroy()
+
+The steps of the servlet life cycle:
+
+1. Loading of the Servlet
+    - When the application server starts up, the servlet container deploys and loads all of the servlet classes
+2. Creating an instance of a servlet
+    - Once the servlet classes are loaded, the servlet container creaes a single instance for each servlet class
+3. Invoke the init() once
+    - Once the servlet classes are instantiated, the init() method is invoked for each instantiated servlet
+4. Invoke the service() method for each request received
+    - Service determines what type of request was sent from the client (GET, POST, PUT, DELETE), and calls the corresponging method to process the request and create a response
+5. Invoke destroy once
+    - This will be called at the end of the servlets life
+
+# Servlet API
+
+The servlet API provides the interfaces and classes that are needed to build servlets. You can find these classes and interfaces in two packages:
+
+-   java.servlet package - used by servlet or web containers
+-   java.servlet.http package - used for handling http requests
+
+The root of the servlet API is the Servlet interface ->
+
+GenericServlet implements Servlet, ServletConfig, Serializable
+
+HttpServlet extends the GenericServlet class, and implements Serializable, this provides us the ability to process HTTP requests with the overriden doGet(), doPost()...
+
+Your CustomServlet extends HttpServlet to override the default implementation for doGet, doPost, etc, to provide the needed functionality for your servlets
+
+# Deployment Descriptor
+
+Java web applications use a deployment descriptor file to define URL's that map to servlets, and to determine which URL's require authentication
+
+The descriptor file specifies the classes, resources, and configuration and the web service uses them to serve HTTP requests
+
+The descriptor is stored in a file called web.xml, stored in the WEB-INF directory of the project
+
+# Servlet Declarations and Mapping
+
+To Declare the servlet in the `<servlet>`, using `<servlet-name>` and `<servlet-class>` inside of the servlet tag
+
+To map the URL's to the servlet class you use the `<servlet-mapping>` with `<servlet-name>` and `<url-pattern>` inside of the servlet-mapping tag
+
+And these are in the web.xml file
+
+# Response Object
+
+The Servlet API provides a HttpServletResponse interface which extends the ServletResponse to assist in sending responses to the client
+
+This allows you to send responses, with different types of data, including, HTML, XML, JSON, text and others
+
+Simple set the content type with .setContentType() method, and use a printWriter to write back to the client
+
+# HTTP Protocol
+
+HTTP: Hypertext transfer protocol
+
+Requests are made up of Verb, URI, HTTP Version, Request Headers, Request Body
+
+Responses are made up of Response Code, HTTP Version, Response Headers, Response Body
+
+Basic verbs/methods for CRUD: GET, POST, DELETE, PUT
+
+Status Codes:
+
+-   100's: Informational
+-   200's: Successful
+-   300's: Redirects
+-   400's: Client Side Error
+-   500's: Server Side Error
+
+# Jackson Library
+
+The Jackson API is used to convert Java object to JSON format, to send in a HTTP request, and to convert http request bodies into Java objects
+
+Use the ObjectMapper.writeValue() to convert a Java object to JSON
+
+Use ObjectMapper.readValue() to convert a JSON object to a Java Object
