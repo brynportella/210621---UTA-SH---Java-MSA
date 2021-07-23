@@ -38,4 +38,27 @@
   	<url-pattern>/users</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+  	<servlet-name>LoginServlet</servlet-name>
+  	<servlet-class>com.example.indirect.LoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>LoginServlet</servlet-name>
+  	<url-pattern>/login</url-pattern>
+  </servlet-mapping>
+  
+  <error-page>
+  	<error-code>404</error-code>
+  	<location>/error</location>
+  </error-page>
+  
+  <servlet>
+  	<servlet-name>ErrorServlet</servlet-name>
+  	<servlet-class>com.example.error.ErrorServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ErrorServlet</servlet-name>
+  	<url-pattern>/error</url-pattern>
+  </servlet-mapping>
+  
 </web-app>
