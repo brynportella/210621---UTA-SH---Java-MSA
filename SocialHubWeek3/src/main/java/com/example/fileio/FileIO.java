@@ -1,4 +1,4 @@
-package com.example.dao;
+package com.example.fileio;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -16,19 +16,21 @@ public class FileIO<T> {
 		this.filename = filename;
 	}
 	
-	public ArrayList<T> readObject() throws FileNotFoundException, IOException{
+	public ArrayList<T> readObject() throws FileNotFoundException, IOException {
 		ArrayList<T> ret;
-		ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename));
-		try {
-			ret = (ArrayList<T>) ois.readObject();
-			return ret;
-		} catch(ClassNotFoundException e) {
-			e.printStackTrace();
-		} finally {
-			ois.close();
-		}
-		return ret = new ArrayList<T>();
+			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename));
+			try {
+				ret = (ArrayList<T>) ois.readObject();
+				return(ret);
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				ois.close();
+			}
+		return null;
 	}
+	
 	
 	public void writeObject(ArrayList<T> objList) {
 		ObjectOutputStream oos;
@@ -37,8 +39,8 @@ public class FileIO<T> {
 			oos.writeObject(objList);
 			oos.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+	
 }

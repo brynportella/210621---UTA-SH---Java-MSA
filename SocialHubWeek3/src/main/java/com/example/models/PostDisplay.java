@@ -9,9 +9,9 @@ public class PostDisplay {
 	private String content;
 	
 	public PostDisplay() {
-		super();
+		
 	}
-
+	
 	public PostDisplay(String username, int postId, int authorId, int wallId, String content) {
 		super();
 		this.username = username;
@@ -66,5 +66,4 @@ public class PostDisplay {
 		return "PostDisplay [username=" + username + ", postId=" + postId + ", authorId=" + authorId + ", wallId="
 				+ wallId + ", content=" + content + "]";
 	}
-	
 }

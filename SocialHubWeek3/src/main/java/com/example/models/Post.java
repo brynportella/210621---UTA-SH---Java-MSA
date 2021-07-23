@@ -1,7 +1,5 @@
 package com.example.models;
 
-import java.io.Serializable;
-
 public class Post{
 	
 	private int postId;
@@ -63,5 +61,4 @@ public class Post{
 		return "Post [postId=" + postId + ", authorId=" + authorId + ", wallUserId=" + wallUserId + ", postContent="
 				+ postContent + "]";
 	}
-	
 }

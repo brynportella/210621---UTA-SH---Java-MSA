@@ -7,6 +7,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
+/*
+ * Singleton utility for creating and retrieving data connections
+ */
 public class ConnectionUtil {
 	
 	private static ConnectionUtil cu;
@@ -16,7 +19,7 @@ public class ConnectionUtil {
 		
 	}
 	
-	public static synchronized ConnectionUtil getConnectionUtil() {
+	public static synchronized ConnectionUtil getConnectionUtil(){
 		if(cu == null) {
 			return new ConnectionUtil();
 		}
@@ -35,18 +38,18 @@ public class ConnectionUtil {
 			url = (String)prop.getProperty("url");
 			username = (String)prop.getProperty("username");
 			password = (String)prop.getProperty("password");
-		} catch(IOException e) {
+		}catch(IOException e) {
 			e.printStackTrace();
 		}
 		
 		Connection con;
 		try {
+			Class.forName("org.postgresql.Driver");
 			con = DriverManager.getConnection(url, username, password);
 			return con;
-		} catch(SQLException e) {
+		} catch(SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		
 		return null;
 	}
 	
