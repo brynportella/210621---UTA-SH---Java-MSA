@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Social Hub</title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <h1>Welcome to Social Hub</h1>
+        <h3>Please sign-in</h3>
+
+        <!-- You can include the method and action attributes to tell -->
+        <!-- The form where to send information, and how it should send it -->
+        <form id="login">
+            <label for='username'>Username: </label>
+            <input id='username' type='text' name='username' maxlength='50' required onkeypress="printPressed(event)"/>
+            <lable for='password'>Password: </lable>
+            <input id='password' type='password' name='password' minlength='8' required/>
+            <input type='submit' value='Login' />
+        </form>
+        <script src='resources/js/login.js'></script>
+        <script src='../js/login.js'></script>
+    </body>
+</html>
