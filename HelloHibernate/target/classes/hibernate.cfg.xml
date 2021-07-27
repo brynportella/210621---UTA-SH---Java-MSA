@@ -22,7 +22,8 @@
 		
 		<!-- We will map our classes down here -->
 		<mapping class="com.example.model.SuperVillain"/>
-		
+		<mapping class="com.example.model.Crime"/>
+		<mapping class="com.example.model.SuperPrison"/>
 	</session-factory>
 
 </hibernate-configuration>

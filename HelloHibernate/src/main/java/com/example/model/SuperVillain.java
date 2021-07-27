@@ -1,10 +1,17 @@
 package com.example.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -26,6 +33,13 @@ public class SuperVillain {
 	private int bounty;
 	
 	//We will also include some multiplicity annotations in a bit
+	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	private List<Crime> crimes;
+	
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	@JoinColumn(name="Prison_FK")
+	private SuperPrison superPrisonHolder;
+	
 	
 	public SuperVillain() {
 		
@@ -36,6 +50,26 @@ public class SuperVillain {
 		this.name = name;
 		this.superpower = superpower;
 		this.bounty = bounty;
+	}
+
+	public SuperVillain(int svillId, String name, String superpower, int bounty, List<Crime> crimes) {
+		super();
+		this.svillId = svillId;
+		this.name = name;
+		this.superpower = superpower;
+		this.bounty = bounty;
+		this.crimes = crimes;
+	}
+
+	public SuperVillain(int svillId, String name, String superpower, int bounty, List<Crime> crimes,
+			SuperPrison superPrisonHolder) {
+		super();
+		this.svillId = svillId;
+		this.name = name;
+		this.superpower = superpower;
+		this.bounty = bounty;
+		this.crimes = crimes;
+		this.superPrisonHolder = superPrisonHolder;
 	}
 
 	public int getSvillId() {
@@ -70,10 +104,27 @@ public class SuperVillain {
 		this.bounty = bounty;
 	}
 
+	public List<Crime> getCrimes() {
+		return crimes;
+	}
+
+	public void setCrimes(List<Crime> crimes) {
+		this.crimes = crimes;
+	}
+
+	public SuperPrison getSuperPrisonHolder() {
+		return superPrisonHolder;
+	}
+
+	public void setSuperPrisonHolder(SuperPrison superPrisonHolder) {
+		this.superPrisonHolder = superPrisonHolder;
+	}
+
 	@Override
 	public String toString() {
 		return "SuperVillain [svillId=" + svillId + ", name=" + name + ", superpower=" + superpower + ", bounty="
-				+ bounty + "]";
+				+ bounty + ", crimes=" + crimes + ", superPrisonHolder=" + superPrisonHolder.getPrisonName() + "]";
 	}
+
 	
 }
