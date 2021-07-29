@@ -17,7 +17,7 @@ async function login(e){
 	
 	
 	try{
-		let req = await fetch('http://localhost:8080/SocialHubWeek3/api/login', {
+		let req = await fetch('http://localhost:8080/SocialHubWeek4/api/login', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'

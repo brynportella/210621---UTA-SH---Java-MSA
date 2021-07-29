@@ -21,5 +21,4 @@ public class HibernateUtil {
 		ses.close();
 		sf.close();
 	}
-	
 }

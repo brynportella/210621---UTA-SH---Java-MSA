@@ -1,26 +1,66 @@
 package com.example.models;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@NamedNativeQueries({
+	@NamedNativeQuery(name="getUsersThatLiked", query="select p.users from Post p where p.post_id = :id")
+})
+
+@Entity
+@Table(name="posts")
 public class Post{
 	
+	@Id
+	@Column(name="post_id")
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int postId;
-	private int authorId;
-	private int wallUserId;
+	
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	@JoinColumn(name="user_id")
+	//@JsonIgnoreProperties("posts")
+	private User user;
+	
+	@Column(name="content")
 	private String postContent;
+	
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(
+		name="post_likes_junction",
+		joinColumns= {@JoinColumn(name="post_id")},
+		inverseJoinColumns = {@JoinColumn(name="user_id")}
+	)
+	Set<User> likes = new HashSet<>();
 	
 	public Post() {
 		
 	}
 	
-	public Post(int id, int authorId, int wallId, String content) {
+	public Post(int id, User u, String content) {
 		this.postId = id;
-		this.authorId = authorId;
-		this.wallUserId = wallId;
+		this.user = u;
 		this.postContent = content;
 	}
 	
-	public Post(int authorId, int wallId, String content) {
-		this.authorId = authorId;
-		this.wallUserId = wallId;
+	public Post(User u, String content) {
+		this.user = u;
 		this.postContent = content;
 	}
 
@@ -32,20 +72,12 @@ public class Post{
 		this.postId = postId;
 	}
 
-	public int getAuthorId() {
-		return authorId;
+	public User getUser() {
+		return user;
 	}
 
-	public void setAuthorId(int authorId) {
-		this.authorId = authorId;
-	}
-
-	public int getWallUserId() {
-		return wallUserId;
-	}
-
-	public void setWallUserId(int wallUserId) {
-		this.wallUserId = wallUserId;
+	public void setAuthorId(User u) {
+		this.user = u;
 	}
 
 	public String getPostContent() {
@@ -55,10 +87,23 @@ public class Post{
 	public void setPostContent(String postContent) {
 		this.postContent = postContent;
 	}
+	
+	public Set<User> getLikes() {
+		return likes;
+	}
+
+	public void setLikes(Set<User> likes) {
+		this.likes = likes;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 	@Override
 	public String toString() {
-		return "Post [postId=" + postId + ", authorId=" + authorId + ", wallUserId=" + wallUserId + ", postContent="
-				+ postContent + "]";
+		return "Post [postId=" + postId + ", user=" + user.getUsername() + ", postContent=" + postContent + ", likes=" + likes + "]";
 	}
+
+	
 }

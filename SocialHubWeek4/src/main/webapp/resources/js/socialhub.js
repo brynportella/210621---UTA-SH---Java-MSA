@@ -5,7 +5,7 @@
 let container = document.getElementById('post-container');
 
 async function getPosts(){
-	let res = await fetch('http://localhost:8080/SocialHubWeek3/api/posts');
+	let res = await fetch('http://localhost:8080/SocialHubWeek4/api/posts');
 	let data = await res.json();
 	populatePosts(data);
 }
@@ -24,7 +24,7 @@ document.getElementById("new-post-btn").addEventListener('click', newPost);
 
 async function newPost(e){
 	e.preventDefault();
-	let req = await fetch('http://localhost:8080/SocialHubWeek3/api/session');
+	let req = await fetch('http://localhost:8080/SocialHubWeek4/api/session');
 	let res = await req.json();
 	let id = res.userId;
 	let content = document.getElementById("post-content").value;
@@ -38,13 +38,13 @@ async function newPost(e){
 		content: content
 	}
 	
-	await fetch('http://localhost:8080/SocialHubWeek3/api/posts', {
+	await fetch('http://localhost:8080/SocialHubWeek4/api/posts', {
 		method: "POST",
 		contentType: "application/json",
 		body: JSON.stringify(post)
 	});
 	
-	req = await fetch('http://localhost:8080/SocialHubWeek3/api/posts');
+	req = await fetch('http://localhost:8080/SocialHubWeek4/api/posts');
 	let data = await req.json();
 	container.innerHTML = '';
 	content.value='';
@@ -54,10 +54,10 @@ async function newPost(e){
 let logoutbtn = document.getElementById("logout").addEventListener("click", logout);
 
 async function logout(){
-	let req = await fetch('http://localhost:8080/SocialHubWeek3/api/logout');
+	let req = await fetch('http://localhost:8080/SocialHubWeek4/api/logout');
 	let res = await req.text();
 	console.log(res);
-	req = await fetch('http://localhost:8080/SocialHubWeek3/api/session');
+	req = await fetch('http://localhost:8080/SocialHubWeek4/api/session');
 	res = await req.text();
 	console.log(res);
 	location.href = '../html/login.html';

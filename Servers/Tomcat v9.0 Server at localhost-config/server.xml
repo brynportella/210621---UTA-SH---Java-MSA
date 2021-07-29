@@ -22,7 +22,7 @@
   <!-- Security listener. Documentation at /docs/config/listeners.html
   <Listener className="org.apache.catalina.security.SecurityListener" />
   -->
-  <!--APR library loader. Documentation at /docs/apr.html -->
+  <!-- APR library loader. Documentation at /docs/apr.html -->
   <Listener SSLEngine="on" className="org.apache.catalina.core.AprLifecycleListener"/>
   <!-- Prevent memory leaks due to use of particular java/javax APIs-->
   <Listener className="org.apache.catalina.core.JreMemoryLeakPreventionListener"/>
@@ -153,7 +153,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="ServletDemo" path="/ServletDemo" reloadable="true" source="org.eclipse.jst.jee.server:ServletDemo"/><Context docBase="SocialHubWeek3" path="/SocialHubWeek3" reloadable="true" source="org.eclipse.jst.jee.server:SocialHubWeek3"/></Host>
+      <Context docBase="SocialHubWeek4" path="/SocialHubWeek4" reloadable="true" source="org.eclipse.jst.jee.server:SocialHubWeek4"/><Context docBase="SocialHubWeek3" path="/SocialHubWeek3" reloadable="true" source="org.eclipse.jst.jee.server:SocialHubWeek3"/></Host>
     </Engine>
   </Service>
 </Server>

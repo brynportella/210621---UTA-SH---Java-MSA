@@ -38,6 +38,7 @@ public class MainDriver {
 		Crime c6 = new Crime("arson", "some people want to see the world burn");
 		cDao.insert(c6);
 		
+		/*
 		List<Crime> cList = new ArrayList<Crime>();
 		cList.add(c1);
 		cList.add(c2);
@@ -71,16 +72,24 @@ public class MainDriver {
 		SuperVillain savedVill3 = sDao.selectByNameHQL("Joker");
 		
 		SuperVillain savedVill4 = sDao.selectByNameCriteria("Thantos");
+		*/
 		
-		System.out.println(savedVill);
+		List<Crime> cList = new ArrayList<Crime>();
+		cList.add(c1);
+		cList.add(c2);
+		cList.add(c6);
+		SuperVillain s4 = new SuperVillain(4, "Test", "testing power", 100, cList, p2);
+		sDao.insert(s4);
 		
-		System.out.println(savedVill2);
+		//System.out.println(savedVill);
 		
-		System.out.println(savedVill3);
+		//System.out.println(savedVill2);
 		
-		System.out.println(savedVill4);
+		//System.out.println(savedVill3);
 		
-		System.out.println(sDao.selectAll());
+		//System.out.println(savedVill4);
+		
+		//System.out.println(sDao.selectAll());
 		
 		HibernateUtil.closeSes();
 		

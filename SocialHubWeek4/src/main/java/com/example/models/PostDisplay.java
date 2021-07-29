@@ -5,19 +5,17 @@ public class PostDisplay {
 	private String username;
 	private int postId;
 	private int authorId;
-	private int wallId;
 	private String content;
 	
 	public PostDisplay() {
 		
 	}
 	
-	public PostDisplay(String username, int postId, int authorId, int wallId, String content) {
+	public PostDisplay(String username, int postId, int authorId, String content) {
 		super();
 		this.username = username;
 		this.postId = postId;
 		this.authorId = authorId;
-		this.wallId = wallId;
 		this.content = content;
 	}
 
@@ -45,13 +43,6 @@ public class PostDisplay {
 		this.authorId = authorId;
 	}
 
-	public int getWallId() {
-		return wallId;
-	}
-
-	public void setWallId(int wallId) {
-		this.wallId = wallId;
-	}
 
 	public String getContent() {
 		return content;
@@ -63,7 +54,6 @@ public class PostDisplay {
 
 	@Override
 	public String toString() {
-		return "PostDisplay [username=" + username + ", postId=" + postId + ", authorId=" + authorId + ", wallId="
-				+ wallId + ", content=" + content + "]";
+		return "PostDisplay [username=" + username + ", postId=" + postId + ", authorId=" + authorId + ", content=" + content + "]";
 	}
 }

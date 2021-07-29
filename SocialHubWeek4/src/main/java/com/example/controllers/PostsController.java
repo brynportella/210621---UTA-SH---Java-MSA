@@ -9,8 +9,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.example.dao.PostDao;
 import com.example.dao.PostDaoConcrete;
+import com.example.dao.PostDaoHibernate;
 import com.example.dao.UserDao;
 import com.example.dao.UserDaoConcrete;
+import com.example.dao.UserDaoHibernate;
 import com.example.models.Post;
 import com.example.models.PostDisplay;
 import com.example.models.User;
@@ -24,15 +26,18 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class PostsController {
 	
-	private static PostDao pDao = new PostDaoConcrete();
-	private static PostService pServ = new PostService(pDao);
-	private static UserDao uDao = new UserDaoConcrete();
+	private static PostDaoHibernate pDao = new PostDaoHibernate();
+	private static UserDaoHibernate uDao = new UserDaoHibernate();
+	private static PostService pServ = new PostService(pDao, uDao);
 	private static UserService uServ = new UserService(uDao);
 	
 	public static void handlePosts(HttpServletRequest req, HttpServletResponse res) throws JsonProcessingException, IOException{
 		if(req.getMethod().equals("GET")) {
 			
 			List<PostDisplay> posts = pServ.getAllPosts();
+			System.out.println(posts);
+			res.addHeader("Access-Control-Allow-Origin", "*");
+			res.setHeader("Access-Control-Allow-Methods", "GET");
 			res.getWriter().write(new ObjectMapper().writeValueAsString(posts));
 			
 		}
@@ -52,14 +57,15 @@ public class PostsController {
 			JsonNode parsedObj = mapper.readTree(data);
 			
 			int userId = Integer.parseInt(parsedObj.get("userId").asText());
-			int wallId = Integer.parseInt(parsedObj.get("wallId").asText());
+			//int wallId = Integer.parseInt(parsedObj.get("wallId").asText());
 			String content = parsedObj.get("content").asText();
-			
-			pServ.addPost(userId, wallId, content);
+			User u = uServ.getUserById(userId);
+			pServ.addPost(u, content);
 			
 			ObjectNode ret = mapper.createObjectNode();
 			ret.put("message", "successfully submitted a new reimbursment");
-			
+			res.addHeader("Access-Control-Allow-Origin", "*");
+			res.setHeader("Access-Control-Allow-Methods", "POST");
 			res.getWriter().write(new ObjectMapper().writeValueAsString(ret));
 		}
 	}

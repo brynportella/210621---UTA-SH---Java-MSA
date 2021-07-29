@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.example.dao.PostDao;
 import com.example.dao.UserDao;
+import com.example.dao.UserDaoHibernate;
 import com.example.exceptions.InvalidCredentialsException;
 import com.example.exceptions.UserDoesNotExistException;
 import com.example.exceptions.UserNameAlreadyExistsException;
@@ -14,9 +15,9 @@ import com.example.models.User;
 
 public class UserService {
 	
-	private UserDao uDao;
+	private UserDaoHibernate uDao;
 	
-	public UserService(UserDao u) {
+	public UserService(UserDaoHibernate u) {
 		this.uDao = u;
 	}
 	
@@ -32,7 +33,11 @@ public class UserService {
 	}
 	
 	public User signIn(String username, String password) throws UserDoesNotExistException, InvalidCredentialsException{
+		System.out.println("In uServ");
+		System.out.println(username);
+		System.out.println(password);
 		User u = uDao.getUserByUserName(username);
+		System.out.println(u);
 		if(u.getId() == 0) {
 			Logging.logger.warn("User tried logging in that does not exist");
 			throw new UserDoesNotExistException();
@@ -45,6 +50,10 @@ public class UserService {
 			Logging.logger.info("User was logged in");
 			return u;
 		}
+	}
+	
+	public User getUserById(int id) {
+		return uDao.getUserById(id);
 	}
 	
 }

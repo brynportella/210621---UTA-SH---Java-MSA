@@ -35,8 +35,8 @@ public class PostDaoConcrete implements PostDao{
 			ResultSet rs = (ResultSet) cs.getObject(1);
 
 			while(rs.next()) {
-				PostDisplay post = new PostDisplay(rs.getString(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getString(5));
-				pList.add(post);
+				//PostDisplay post = new PostDisplay(rs.getString(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getString(5));
+				//pList.add(post);
 			}
 			
 			con.setAutoCommit(true);
@@ -56,8 +56,8 @@ public class PostDaoConcrete implements PostDao{
 			String sql = "call create_post(?,?,?)";
 			CallableStatement cs = con.prepareCall(sql);
 			
-			cs.setInt(1,  p.getAuthorId());
-			cs.setInt(2, p.getWallUserId());
+			//cs.setInt(1,  p.getAuthorId());
+			//cs.setInt(2, p.getWallUserId());
 			cs.setString(3,  p.getPostContent());
 			
 			System.out.println(cs);
@@ -89,7 +89,7 @@ public class PostDaoConcrete implements PostDao{
 			ResultSet rs = (ResultSet) cs.getObject(1);
 
 			while(rs.next()) {
-				Post p = new Post(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4));
+				Post p = new Post();
 				posts.add(p);
 			}
 			

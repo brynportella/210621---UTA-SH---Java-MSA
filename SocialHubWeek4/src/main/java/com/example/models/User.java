@@ -1,17 +1,32 @@
 package com.example.models;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.example.models.Post;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+@NamedQueries({
+	@NamedQuery(name="getUsersLikedPosts", query="select u.likePosts from User u where u.id = :id")
+})
+
 
 @Entity
 @Table(name="users")
@@ -37,7 +52,13 @@ public class User{
 	@Column(name="password", nullable=false)
 	private String password;
 	
+	@OneToMany(mappedBy="user", cascade=CascadeType.ALL)
+	@JsonIgnore
 	private List<Post> posts;
+	
+	@ManyToMany(mappedBy = "likes")
+	@JsonIgnore
+	private Set<Post> likePosts = new HashSet<Post>();
 	
 	public User() {
 		posts = new ArrayList<Post>();
@@ -138,9 +159,19 @@ public class User{
 		this.posts = posts;
 	}
 
+	public Set<Post> getLikePosts() {
+		return likePosts;
+	}
+
+	public void setLikePosts(Set<Post> likePosts) {
+		this.likePosts = likePosts;
+	}
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", username=" + username
-				+ ", email=" + email + ", password=" + password + ", posts=" + posts + "]";
+				+ ", email=" + email + ", password=" + password + ", posts=" + posts + ", likePosts=" + likePosts.size() + "]";
 	}
+
+	
 }

@@ -14,7 +14,7 @@ public class RequestViewHelper {
 		System.out.println("In the request helper, with the URI: " + req.getRequestURI());
 		//We will use the specific URI's to send the request to the correct controller
 		switch(req.getRequestURI()) {
-			case "/SocialHubWeek3/login":
+			case "/SocialHubWeek4/login":
 				return LoginViewController.fetchLoginPage(req);
 		}
 		return "/SocialHubWeek3/login";
