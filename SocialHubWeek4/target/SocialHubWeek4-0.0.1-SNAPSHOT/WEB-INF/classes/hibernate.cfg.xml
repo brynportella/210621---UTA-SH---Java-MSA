@@ -1,0 +1,37 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+	<hibernate-configuration>
+	
+		<session-factory>
+			<!-- This is the connection information -->
+			<property name="hibernate.connection.username">social</property>
+			<property name="hibernate.connection.password">password</property>
+			<property name="hibernate.connection.url">jdbc:postgresql://java-uta-210621.cjryxnsvzgov.us-east-2.rds.amazonaws.com:5432/socialhubhibernate</property>
+			<property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+			<property name="hibernate.connection.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+			<property name="hibernate.show_sql">false</property>
+			<property name="hibernate.format_sql">false</property>
+			
+			<!-- Connection Pool, a method of speeding up DB calls, Hibernate will open up the number of connections specified in the tag below when it starts up
+			Everytime you create a session a session will borrow an active connection for the connection pool. When you close a session the connection does not close it is simply
+			freed up and available to be used by another session. The default size for this pool is 20 -->
+			
+			<property name="hibernate.connection.pool_size">10</property>
+			
+			<!-- The tag below is how you allow hibernate to affect your database schema
+			If you set it to create, it will drop all tables that currently exist and any other objects that have names
+			provided in the annotations. Hibernate will then create your schema from scratch
+			Validate which checks to make sure that the schema exists as expected
+			Update, will not alter the schema, it will add to the schema if you need more objects
+			None hibernate will do nothing to your schema -->
+			
+			<property name="hibernate.hbm2ddl.auto">update</property>
+			
+			<!-- We will map our classes here -->
+			<mapping class="com.example.models.User"/>
+			<mapping class="com.example.models.Post"/>
+		</session-factory>
+	
+	</hibernate-configuration>

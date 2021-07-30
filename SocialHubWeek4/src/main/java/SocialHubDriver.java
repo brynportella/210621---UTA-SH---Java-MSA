@@ -32,7 +32,12 @@ public class SocialHubDriver {
 		User u4 = new User(0, "Beth", "Smith", "beth@email.com", "password");
 		User u5 = new User(0, "Jerry", "Smith", "jerry@email.com", "password");
 		
+		Post p1 = new Post(u4, "Testing our post table");
+		
+		u4.getPosts().add(p1);
+		
 		//uDao.createUser(u3);
+		pDao.createPost(p1);
 		uDao.createUser(u4);
 		/*
 		System.out.println("Rick User:");

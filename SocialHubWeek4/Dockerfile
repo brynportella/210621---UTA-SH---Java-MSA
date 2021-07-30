@@ -1,7 +1,7 @@
 FROM tomcat:8-jre8-alpine
 
-RUN rm -rf /usr/local/tomat/webapps/*
+RUN rm -rf /usr/local/tomcat/webapps/*
 
-COPY target/SocialHubWeek3-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps/SocialHubWeek3-0.0.1-SNAPSHOT.war
+COPY target/SocialHubWeek4-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps/SocialHubWeek4-0.0.1-SNAPSHOT.war
 
 CMD ["catalina.sh", "run"]
