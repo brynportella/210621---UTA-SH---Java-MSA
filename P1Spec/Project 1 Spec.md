@@ -97,3 +97,5 @@ If you are having trouble wrapping your head around how to start, here is my pre
 At the end of the day this is only a guidline, you can take whatever approach you like, as long as you understand how you are implementing the project.
 
 GLHF :)
+
+![rubric](rubric.PNG)
