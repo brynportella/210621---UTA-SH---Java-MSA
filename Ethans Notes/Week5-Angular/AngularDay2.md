@@ -130,3 +130,27 @@ You can use inline templates in the Angular HTML template using double curly bra
 You declare these properties inside of the export of the compoent class
 
 The easiest way to create a component is `ng generate component c-name` this will generate all the relevant files for a component
+
+# Data Binding
+
+In Angular, Data binding provides the communication between a component and the Dom
+
+Angular supports 1 way and 2 way data binding
+
+## 1-way data binding
+
+1-way data binding allows us to manipulate views through models, and its achieved through:
+
+- String interpolation: binding data from a typescript class to the template using the double curly braces {{}}
+
+- Property binding: allows us to bind values to the attributes of HTML elements
+
+- Event binding: allows us to bind DOM evetns such as keystrokes, button clicks, etc to a function in the component
+
+## 2-way data binding
+
+In 1-way data binding changes in the template are not reflected in the component, to solve this we use 2-way data binding
+
+This is achieve by combining property binding and event binding
+
+This is useful for gathering user input

@@ -1,18 +1,24 @@
 <app-navbar></app-navbar>
 <div class="posts-container">
-    <div class="post">
-        <h2>Rick Sanchez</h2>
-        <p>Morty and I just did some sick space stuff</p>
-        <p>Likes: 1</p>
+    <button [hidden]="!hide" (click)="loadPosts()">Load Posts</button>
+    <div class="post" [hidden]="hide">
+        <h2>{{posts[0].user}}</h2>
+        <p>{{posts[0].content}}</p>
+        <p>{{posts[0].likes}}</p>
     </div>
-    <div class="post">
-        <h2>Summer Smith</h2>
-        <p>Are we just going to forget the time grandpa turned snuffles inot a leader of an army of dogs?</p>
-        <p>Likes: 1</p>
+    <div class="post" [hidden]="hide">
+        <h2>{{posts[1].user}}</h2>
+        <p>{{posts[1].content}}</p>
+        <p>{{posts[1].likes}}</p>
     </div>
-    <div class="post">
-        <h2>Morty Smith</h2>
-        <p>I am never going on another adventure with Rick again!</p>
-        <p>Likes: 1</p>
+    <div class="post" [hidden]="hide">
+        <h2>{{posts[2].user}}</h2>
+        <p>{{posts[2].content}}</p>
+        <p>{{posts[2].likes}}</p>
+    </div>
+    <div class="post" [hidden]="hide">
+        <h2>{{posts[3].user}}</h2>
+        <p>{{posts[3].content}}</p>
+        <p>{{posts[3].likes}}</p>
     </div>
 </div>
