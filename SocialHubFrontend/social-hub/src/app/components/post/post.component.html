@@ -1,0 +1,15 @@
+<div *ngIf="liked; else elseBlock">
+    <div [ngClass]="['post', 'liked']" (click)="likePost()">
+        <h2>{{post.user}}</h2>
+        <p>{{post.content}}</p>
+        <p>Likes: {{post.likes}}</p>
+    </div>
+</div>
+<ng-template #elseBlock>
+    <div [ngClass]="['post', 'not-liked']" (click)="likePost()">
+        <h2>{{post.user}}</h2>
+        <p>{{post.content}}</p>
+        <p>Likes: {{post.likes}}</p>
+    </div>
+</ng-template>
+

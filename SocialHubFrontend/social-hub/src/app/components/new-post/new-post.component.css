@@ -1,0 +1,43 @@
+.create-post-textarea {
+    resize: none;
+    overflow: hidden;
+    font-size: 25px;
+    height: 30px;
+    border: none;
+    margin: 35px;
+    background: #ebebeb;
+}
+
+.create-post-textarea:focus {
+    outline-width: 0;
+}
+
+.create-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    border: 2px solid #dedede;
+    padding: 25px;
+    width: 1000px;
+    height: fit-content;
+    margin-top: 100px;
+}
+
+.content-container {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.profile-pic {
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    object-fit: cover;
+}
+
+.preview {
+    margin-top: 25px;
+    align-self: center;
+}

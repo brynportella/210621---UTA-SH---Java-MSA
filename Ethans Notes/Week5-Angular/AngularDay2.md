@@ -154,3 +154,45 @@ In 1-way data binding changes in the template are not reflected in the component
 This is achieve by combining property binding and event binding
 
 This is useful for gathering user input
+
+# Structural Directives
+
+Directives are markers on a DOM element that tells Angular to change the appearance, behavior, and/or layout of the Dom element and its children
+
+Structural diectives are used to manipulate and change the structure of DOM elements
+
+There are three built-in structurla directives:
+
+ngIf: allows us to add or remove DOM elements based upon a Boolean expression
+- you can also add an #elseBlock
+
+ngFor: allows us to repeat a part of the HTML template once per each item from an iterable list
+
+ngSwith: allows us to switch betwen different elements depending on the expression. It is used with the following directives
+- ngSwitchCase
+- ngSwitchDefault
+
+`<ng-template>` is designed to hold some template code
+
+# Attribute Directives
+
+Attribute Directives are used to change the look and behavior of the DOM element
+
+There are two built in attribute directives:
+
+ngClass: used for adding or removing CSS classes on an HTML element. It can allow us to apply CSS classes dynamically based on expression evaulation
+
+ngStyle: allows you to dynamically change the style of an HTML element based on an expression
+
+You can also create your own custom directives using the Angular CLI command `ng generate directive name`
+- This will create a name.directive.ts file, and automatically declares it in the AppModule file
+
+# Event Emitters
+
+EventEmitters are used to emit custom events, synchronously or asynchronously, and register handlers for those events by subscribing to an instance
+
+You use the @Input and @Output decorators to flow data between components
+
+- If we have to flow data into a component you use @Input
+- If we have to emit the event or data from a component we use @Output
+

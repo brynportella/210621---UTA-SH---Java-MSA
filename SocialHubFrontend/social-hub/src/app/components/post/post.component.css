@@ -1,0 +1,15 @@
+.post{
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: solid 2px lightgray;
+    padding: 10px;
+}
+
+.liked{
+    border: solid 2px #39a2db;
+}
+
+.not-liked{
+    border: solid 2px lightgray;
+}

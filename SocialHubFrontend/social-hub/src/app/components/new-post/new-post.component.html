@@ -1,0 +1,19 @@
+<div class="create-container">
+    <div class="content-container">
+        <img
+            class="profile-pic"
+            src="https://freepikpsd.com/media/2019/10/default-user-profile-image-png-6-Transparent-Images.png"
+        />
+        <textarea
+            [(ngModel)]="content"
+            cols="50"
+            maxLength="128"
+            placeholder="Type to see a post preview"
+            class="create-post-textarea"
+        >
+        </textarea>
+    </div>
+    <div class="preview">
+        <p>{{content}}</p>
+    </div>
+</div>
