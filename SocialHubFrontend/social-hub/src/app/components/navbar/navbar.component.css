@@ -1,0 +1,103 @@
+.navbar {
+    background: linear-gradient(90deg, #011638 0%, #351d5d 100%);
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    position: fixed;
+    width: 100%;
+}
+
+.navbar-logo {
+    color: #ebebeb;
+    justify-self: start;
+    margin-left: 20px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 2rem;
+}
+
+.nav-menu {
+    display: grid;
+    grid-template-columns: repeat(5, auto);
+    grid-gap: 10px;
+    list-style: none;
+    text-align: center;
+    width: 70vw;
+    height: 80px;
+    justify-content: end;
+    margin-right: 2rem;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    height: 80px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.nav-link {
+    color: #ebebeb;
+    font-size: 1.5rem;
+    text-decoration: none;
+    cursor: pointer;
+    align-self: center;
+}
+
+.close-icon {
+    color: #ebebeb;
+}
+
+.menu {
+    color: #ebebeb;
+}
+
+.logout-button {
+    background-color: #A2DBFA;
+    border: none;
+    border-radius: 25px;
+    color: #011638;
+    font-weight: bold;
+    width: 100px;
+    height: 40px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    outline: none;
+    align-self: center;
+    margin-left: 50px;
+}
+
+.logout {
+    display: flex;
+    align-items: center;
+    align-self: center;
+    height: 80px;
+    outline: none;
+}
+
+.logout-button:hover {
+    background: #011638;
+    color: #ebebeb;
+    transition: 250ms;
+    border: 1px solid #A2DBFA;
+}
+
+.logout-button:focus {
+    outline: none;
+}
+
+.profile-pic-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    object-fit: cover;
+    margin-top: 5px;
+}
