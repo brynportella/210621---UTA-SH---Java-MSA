@@ -33,7 +33,7 @@ public class Post{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int postId;
 	
-	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="user_id")
 	@JsonIgnoreProperties("posts")
 	private User user;

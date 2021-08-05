@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import {Post} from '../../Post';
 import { PostService } from '../../services/post.service';
 
@@ -9,17 +10,19 @@ import { PostService } from '../../services/post.service';
 })
 export class PostsContainerComponent implements OnInit {
 
-  posts: Post[] = [];
+  posts: Observable<Post[]> = new Observable<Post[]>();
 
   addPost(post: Post): void{
-    this.posts = this.postService.addPost(post);
+    this.postService.addPost(post);
+    this.posts = this.postService.subject;
   }
 
   constructor(private postService:PostService) { }
 
   ngOnInit(): void {
     //We will use the ngOnInit lifecycle method to grap the posts as soon as the posts-container component is created
-    this.posts = this.postService.getPosts();
+    this.postService.getPosts();
+    this.posts = this.postService.subject;
   }
 
 }

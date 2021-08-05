@@ -160,3 +160,15 @@ There are two categories of errors which need to be handled differenty
 We can figure out if an error is an instance of ErrorEvent to figure out which type of error we encountered
 
 To catch errors we pipe the observable resule from http.get/any method through an RxJS catchError operator
+
+# RxJS - Subjects
+
+Subjects are a special type of Observable that allows values to be multicasted to many Observers
+
+Every Subject is an Observable with the same next(), error() and complete() methods. To feed values to the subject, you call the next() method, and it will be multicast to all the Observers registered to listen to that subject
+
+There are three variants of subjects:
+
+- Behavior is ued to temporarilty store the current data value of any observer declared before it
+- Replay provides an option to choose how many values we want to emit from the last observer. This subject stores and then passes the last specified option values to the new observer
+- Async emits the last value to observables when the sequence is complete, only executes the subject after complete() is called
