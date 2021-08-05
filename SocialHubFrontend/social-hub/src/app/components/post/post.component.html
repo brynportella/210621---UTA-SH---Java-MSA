@@ -3,6 +3,7 @@
         <h2>{{post.user}}</h2>
         <p>{{post.content}}</p>
         <p>Likes: {{post.likes}}</p>
+        <p>{{post.date | date:'short'}}</p>
     </div>
 </div>
 <ng-template #elseBlock>
@@ -10,6 +11,7 @@
         <h2>{{post.user}}</h2>
         <p>{{post.content}}</p>
         <p>Likes: {{post.likes}}</p>
+        <p>{{post.date | date:'short'}}</p>
     </div>
 </ng-template>
 

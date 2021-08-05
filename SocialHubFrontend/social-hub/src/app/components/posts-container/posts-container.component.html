@@ -1,3 +1,4 @@
 <div class="posts-container">
+    <app-new-post (onAddPost)="addPost($event)"></app-new-post>
     <app-post *ngFor="let post of posts" [post]="post"></app-post>
 </div>

@@ -2,10 +2,9 @@
     resize: none;
     overflow: hidden;
     font-size: 25px;
-    height: 30px;
+    height: 200px;
     border: none;
-    margin: 35px;
-    background: #ebebeb;
+    margin-left: 35px;
 }
 
 .create-post-textarea:focus {
@@ -22,7 +21,15 @@
     padding: 25px;
     width: 1000px;
     height: fit-content;
-    margin-top: 100px;
+}
+
+.red-outline {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid red;
+    padding: 25px;
+    width: 1000px;
+    height: fit-content;
 }
 
 .content-container {
@@ -39,5 +46,25 @@
 
 .preview {
     margin-top: 25px;
-    align-self: center;
+    width: fit-content;
+    text-align: center;
+}
+
+.create-post-button {
+    width: 200px;
+    height: 50px;
+    border-radius: 25px;
+    border: none;
+    background: #a2dbfa;
+    color: #011638;
+    font-size: 1.2rem;
+    font-weight: 600;
+    outline: none;
+}
+
+.create-post-button:hover {
+    cursor: pointer;
+    background: #011638;
+    color: #a2dbfa;
+    transition: 250ms;
 }

@@ -1,19 +1,30 @@
-<div class="create-container">
-    <div class="content-container">
-        <img
-            class="profile-pic"
-            src="https://freepikpsd.com/media/2019/10/default-user-profile-image-png-6-Transparent-Images.png"
-        />
-        <textarea
-            [(ngModel)]="content"
-            cols="50"
-            maxLength="128"
-            placeholder="Type to see a post preview"
-            class="create-post-textarea"
-        >
-        </textarea>
-    </div>
-    <div class="preview">
-        <p>{{content}}</p>
-    </div>
+<h1 *ngIf="error">Please include post content and try again!</h1>
+
+<div>
+    <form (ngSubmit)="onSubmit()">
+        <div [ngClass]="error ? 'red-outline' : 'create-container'">
+            <div class="content-container">
+                <img
+                    class="profile-pic"
+                    src="https://freepikpsd.com/media/2019/10/default-user-profile-image-png-6-Transparent-Images.png"
+                />
+                <textarea
+                    class="create-post-textarea"
+                    name="content"
+                    [(ngModel)]="content"
+                    cols="50"
+                    maxlength="128"
+                    placeholder="Type to see a post preview">
+                </textarea>
+            </div>
+            <div class="preview">
+                <p>{{content}}</p>
+                <input
+                    type="submit"
+                    value="Add New Post"
+                    class="create-post-button"
+                />
+            </div>
+        </div>
+    </form>
 </div>

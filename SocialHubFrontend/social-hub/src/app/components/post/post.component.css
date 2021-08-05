@@ -1,15 +1,14 @@
-.post{
-    width: 100%;
+.post {
+    width: 800px;
     margin-top: 10px;
     margin-bottom: 10px;
-    border: solid 2px lightgray;
     padding: 10px;
-}
-
-.liked{
+  }
+  
+  .liked {
     border: solid 2px #39a2db;
-}
-
-.not-liked{
+  }
+  
+  .not-liked {
     border: solid 2px lightgray;
-}
+  }

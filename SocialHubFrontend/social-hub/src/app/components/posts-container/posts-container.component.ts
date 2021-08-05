@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { POSTS } from 'src/app/mock-posts';
 import {Post} from '../../Post';
+import { PostService } from '../../services/post.service';
 
 @Component({
   selector: 'app-posts-container',
@@ -9,11 +9,17 @@ import {Post} from '../../Post';
 })
 export class PostsContainerComponent implements OnInit {
 
-  posts: Post[] = POSTS;
+  posts: Post[] = [];
 
-  constructor() { }
+  addPost(post: Post): void{
+    this.posts = this.postService.addPost(post);
+  }
+
+  constructor(private postService:PostService) { }
 
   ngOnInit(): void {
+    //We will use the ngOnInit lifecycle method to grap the posts as soon as the posts-container component is created
+    this.posts = this.postService.getPosts();
   }
 
 }
