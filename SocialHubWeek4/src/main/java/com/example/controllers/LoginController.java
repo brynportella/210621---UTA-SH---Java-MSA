@@ -14,6 +14,7 @@ import com.example.services.UserService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class LoginController {
 
@@ -42,6 +43,9 @@ public class LoginController {
 		try {
 			System.out.println("In the post handler");
 			User u = uServ.signIn(username, password);
+			ObjectNode user = mapper.createObjectNode();
+			user.put("id", u.getId());
+			user.put("username", u.getUsername());
 			System.out.println(u);
 			//We will keep track of if the user is logged in by storing their id in the session
 			req.getSession().setAttribute("id", u.getId());

@@ -86,3 +86,77 @@ To create a custom pipe, use the CLI command `ng g pipe pipe-name`
 This will create two files, a name.pipe.ts file, and a name.pipe.spec.ts file, to implement your pipe include your logic in the name.pipe.ts file
 
 The name.pipe.ts file will have a class that implements PipeTransform, and you must implement the method transform from this interface
+
+# Setting up Routing
+
+Routing is how we navigate between pages in a single page application
+
+Angular provides routing with the RouterModule, it has all the neccessary service providers and directives for navigating through the applications views
+
+The router defines navigate of views on a SPA, and interprets URL links to determine which component/view to load or unload
+
+A routing component imports the Router module, and its template contains a RouterOutlet element where it can display views produced by the router
+
+# Route Guards
+
+Router guards are used to check whether the user whould be granted or remove acess to certain parts of navigation
+
+There are 4 different interfaces that act as routing guards:
+
+- CanActivate: decides if the route can be activated
+- CanActivateChild: decides if children of the route can be activated
+- CanLoad: decides if the route can be loaded
+- CanDeactivate: decides if the user can leave the route
+
+To create a route guard, use the `ng g guard name` command, and use it by imposing one of the 4 interfaces aboce in the route module
+
+# Pub/Sub Design Pattern
+
+Publisher/Subscriber Design Pattern describes the flow of messages between applications, devices, or services
+
+A message is published to a channel, then consumed by a subscriber monitoring that channel
+
+- When a message is publishde the subscriber is notified
+- Messages can be anything
+- We typically implement this in an asynchronous way
+
+# HttpClient
+
+The HttpClient service is used for communication between front-wen web apps and backend services
+
+The HttpClient is available as an injectible class, and it is included when creating a new Angular app, you just need to register it in the import of NgModule
+
+All HttpClient method return an Observable of something
+
+## RxJS - Observable
+
+RxJS stands for Reactive Extension for JavaScript, and is a framework for reactive programming using observables that makes it easier to write asynchronous code
+
+Observables provide support for passing message between parts of your application, we use these for event handling, async programming, and handling multiple values
+
+The observer pattern is similar to pub/sub. Observables define a funtion for publishing values, but it is not executed until a consumer subscribes to it. The subscribed consumer then receives notifiations until the function completes, or they unsubscribe
+
+To consume values from an observable you use the .subscribe() method passing an observer, the unsubscribe() method stops observing
+
+The observer defines three callback methods:
+- next(): called whenever a value arrives in the stream
+- error(): called if an error occurs
+- complete(): called when the stream is complete
+
+Promise vs Observable
+
+- A promise emits only one single value, while Observables emit a stream of multiple calues
+
+The HttpHeaders service allows us to configure the headers of our request
+
+## Handling Errors with HttpClient
+
+You can handle errors by using HttpClient along with catchError from RxJS
+
+There are two categories of errors which need to be handled differenty
+- Client-side: Network problems, and front-end code errors, return ErrorEvent instances
+- Server-side: AJAX errors, user erros, backend code errors, file system errors, return HTTP Error respone
+
+We can figure out if an error is an instance of ErrorEvent to figure out which type of error we encountered
+
+To catch errors we pipe the observable resule from http.get/any method through an RxJS catchError operator

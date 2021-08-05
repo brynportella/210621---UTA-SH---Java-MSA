@@ -1,0 +1,28 @@
+<h1>Welcom to SocialHub</h1>
+<p>Login to Continue</p>
+<h1 *ngIf="error">Username of Password Incorrect</h1>
+<form id="login" (ngSubmit)="onSubmit()">
+    <div class="input-div">
+        <label for="username">Username: </label>
+        <input
+            id="username"
+            type="text"
+            name="username"
+            maxlength="50"
+            required
+            [(ngModel)]="username"
+        />
+    </div>
+    <div class="input-div">
+        <label for="password">Password: </label>
+        <input
+            id="password"
+            type="password"
+            name="password"
+            minlength="8"
+            required
+            [(ngModel)]="password"
+        />
+    </div>
+    <input type="submit" value="Login"/>
+</form>

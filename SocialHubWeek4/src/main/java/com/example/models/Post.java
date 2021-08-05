@@ -35,7 +35,7 @@ public class Post{
 	
 	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn(name="user_id")
-	//@JsonIgnoreProperties("posts")
+	@JsonIgnoreProperties("posts")
 	private User user;
 	
 	@Column(name="content")
