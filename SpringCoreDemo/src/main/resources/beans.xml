@@ -1,0 +1,45 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+		
+		<!-- SETTER INJECTION -->
+		<!-- 
+		<bean name="SuperVillainDaoBean" scope="singleton" class="com.example.dao.SuperVillainDao"/>
+		<bean name="SuperVillainServiceBean" class="com.example.service.SuperVillainService">
+			<property name="vDao" ref="SuperVillainDaoBean" />
+		</bean>
+		-->
+		
+		<!--  CONSTRUCTOR INJECTION -->
+		<!--
+		<bean name="SuperVillainDaoBean" scope="singleton" class="com.example.dao.SuperVillainDao"/>
+		<bean name="SuperVillainServiceBean" class="com.example.service.SuperVillainService">
+			<constructor-arg index="0" ref="SuperVillainDaoBean"/>
+			<constructor-arg index="1" value="5"/>
+		</bean>
+		-->
+		
+		<!-- AUTOWIRING -->
+		<!-- 
+			"no" autowiring means spring will not autowire. this is also default
+			"byType" means Spring will autowire by looking at the class' property datatypes and matching to 
+			beans in the IOC Container. It uses setters to inject the beans
+			"constructor" works similar to byType, execpt is uses a constructor with the most distinct
+			dependencies, it then matches by type to beans in the IOC container
+			"byName" looks at the class' property variable names and finds means in the container with the same names
+			It uses setters to inject the bean
+		 -->
+		 
+		 <context:annotation-config/>
+		 
+		<!--
+		<bean name="SuperVillainDaoBean" class="com.example.dao.SuperVillainDao"/>
+
+		<bean name="SuperVillainServiceBean" class="com.example.service.SuperVillainService" autowire="byType"/>
+		<bean name="SuperVillainServiceBean" class="com.example.service.SuperVillainService"/>
+		-->
+		
+		<context:component-scan base-package="com.example"/>
+		
+</beans>

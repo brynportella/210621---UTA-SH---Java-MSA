@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+		
+		<context:annotation-config></context:annotation-config>
+		<context:component-scan base-package="com.example"></context:component-scan>
+		
+		<!-- Tell spring-orm that we are using their annotations -->
+		<tx:annotation-driven/>
+		
+		<!-- DataSource: this bean will be a JDBC instance, it is the object the holds all the attributes needed to connect
+		to the database -->
+		<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+			<property name="driverClassName" value="org.postgresql.Driver"></property>
+			<property name="url" value="jdbc:postgresql://java-uta-210621.cjryxnsvzgov.us-east-2.rds.amazonaws.com:5432/fooddb"></property>
+			<property name="username" value="fooduser"></property>
+			<property name="password" value="password"></property>
+		</bean>
+		<!-- Session Factory this bean is a Hibernate Instance, it will be responsible for creating and managing hibernate sessions -->
+		<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+			<property name = "dataSource" ref="dataSource"></property>
+			<property name = "packagesToScan" value="com.example.model"></property>
+			<property name="hibernateProperties">
+				<props>
+					<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
+					<prop key="hibernate.show_sql">true</prop>
+					<prop key="hibernate.format_sql">true</prop>
+					<prop key="hibernate.hbm2ddl.auto">create</prop>
+				</props>
+			</property>
+		</bean>
+		
+		<!-- Transaction Manager
+				This si a hibernate instance it is responsible for managing our transactions
+				
+				Programmatic Transaction Management
+					our transactions are hard coded into our source code
+					
+				Declarative Transaction Management
+					allows us to manage transactions through configurations
+					
+				Scope of Transaction Management
+					Global Transactions: where our transactions occur between different databases, also called distributed
+						transaction processing
+						
+					Local Transactions: Where transactions occur between the application and a single RDBMS -->
+					
+		<bean id="transactionManager" class = "org.springframework.orm.hibernate5.HibernateTransactionManager">
+			<property name = "sessionFactory" ref = "sessionFactory"></property>
+		</bean>
+</beans>
