@@ -56,8 +56,10 @@ public class AspectExamples {
 	
 	@Around("execution(* scul*(..))")
 	public void aroundAdvice(ProceedingJoinPoint pjp) throws Throwable{
+		//This top half before proceed acts as the @Before
 		System.out.println("wetting the clay");
 		System.out.println(pjp.getSignature());
+		//Everything after proceed acts as the @After
 		System.out.println(pjp.proceed()); //lets the method proceed with execution, the above will execute before the joinpoint
 		//The rest will execute after
 		System.out.println("cleaning the mess");
