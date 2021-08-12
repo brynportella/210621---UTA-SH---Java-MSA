@@ -10,19 +10,26 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   
-  <!-- Context Load Listener: this ties the lifecycle of Spring to the lifecycle of Tomcat -->
+    <!-- COntext Load Listener: this ties the lifecycle of Spring to the Lifecycle of TomCat -->
   <listener>
-  	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
   
-  <!-- We must still register our servlet aka the DispatchServlet in the web.xml -->
-  <servlet>
-  	<servlet-name>dispatcher</servlet-name>
-  	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-  	<init-param>
+  <context-param>
   		<param-name>contextConfigLocation</param-name>
   		<param-value>/WEB-INF/applicationContext.xml</param-value>
-  	</init-param>
+  </context-param>
+  
+  <!-- Web.xml is used to register our servlets, we must registery our one and only servlet the dispatcher servlet
+  and we must map our url patterns to the servlet -->
+  
+  <servlet>
+  		<servlet-name>dispatcher</servlet-name>
+  		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+  		<init-param>
+  			<param-name>contextConfigLocation</param-name>
+  			<param-value>/WEB-INF/applicationContext.xml</param-value>
+  		</init-param>
   </servlet>
   
   <servlet-mapping>

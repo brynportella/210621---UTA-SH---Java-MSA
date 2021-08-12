@@ -9,17 +9,16 @@
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-	<!-- Use Spring Core annotations -->
+	<!-- Use spring core annotations -->
 	<context:annotation-config></context:annotation-config>
 	<context:component-scan
 		base-package="com.example"></context:component-scan>
 
 	<!-- Use Spring ORM annotations -->
-	<tx:annotation-driven></tx:annotation-driven>
+	<tx:annotation-driven />
 
-	<!-- Use Spring MVC annotations -->
+	<!-- MVC annotations -->
 	<mvc:annotation-driven></mvc:annotation-driven>
-
 	<!-- DataSource: this bean will be a JDBC instance, it is the object the 
 		holds all the attributes needed to connect to the database -->
 	<bean id="dataSource"
@@ -31,7 +30,6 @@
 		<property name="username" value="fooduser"></property>
 		<property name="password" value="password"></property>
 	</bean>
-
 	<!-- Session Factory this bean is a Hibernate Instance, it will be responsible 
 		for creating and managing hibernate sessions -->
 	<bean id="sessionFactory"
@@ -48,10 +46,17 @@
 		</property>
 	</bean>
 
+	<!-- Transaction Manager This si a hibernate instance it is responsible 
+		for managing our transactions Programmatic Transaction Management our transactions 
+		are hard coded into our source code Declarative Transaction Management allows 
+		us to manage transactions through configurations Scope of Transaction Management 
+		Global Transactions: where our transactions occur between different databases, 
+		also called distributed transaction processing Local Transactions: Where 
+		transactions occur between the application and a single RDBMS -->
+
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-
 
 </beans>
