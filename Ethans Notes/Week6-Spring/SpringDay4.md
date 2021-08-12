@@ -79,3 +79,17 @@ When you extend JpaRepositpry Spring will automatically create an implementation
 
 - You can also use @Query to write JPA queries, and use QueryDSL as stated above
     - You may end up using @Query on rare occasions
+
+## Spring Data Annotations
+
+A quick run down of the different Spring Data Annotations
+
+| Annotation                      | Purpose                                                                                   |
+| ------------------------------- | ----------------------------------------------------------------------------------------- |
+| @Transactional                  | Configure how the database transaction behaves              |
+| @NoRepositoryBean               | Creates an interface that provides common methods for child repositories                  |
+| @Param                          | Parameters can be passed to queries defined with @Query                                   |
+| @Transient                      | Mark a field as transient, to be ignored by the data store engine during reads and writes |
+| @CreatedBy, @LastModifiedBy     | Auditing annotations that will automatically be filled with the current principal         |
+| @CreatedDate, @LastModifiedDate | Auditing annotations that will automatically fill with current date                       |
+| @Query                          | Supply a JPQL query for repository methods                                                |
