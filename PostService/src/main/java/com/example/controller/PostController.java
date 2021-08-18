@@ -20,7 +20,6 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 @RestController
-@RequestMapping("post")
 @AllArgsConstructor(onConstructor=@__(@Autowired))
 @NoArgsConstructor
 public class PostController {

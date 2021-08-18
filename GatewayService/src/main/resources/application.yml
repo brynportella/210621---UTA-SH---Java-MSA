@@ -1,0 +1,20 @@
+server:
+  port: 8080
+  
+spring:
+  application.name: gateway
+  cloud:
+    gateway:
+      default-filters:      - PrefixPath=/
+      routes:
+      - id: user
+        uri: lb://user
+        predicates:
+         - Path=/user/**
+        filters:
+        - StripPrefix=1
+      - id: post
+        uri: lb://post
+        predicates:        - Path=/post/**
+        filters:
+        - StripPrefix=1
